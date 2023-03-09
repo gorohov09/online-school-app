@@ -4,9 +4,9 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import WidgetInfo from '../../components/widgetInfo/WidgetInfo';
 
-import "./home.scss";
+import "./homePage.scss";
 
-const Home = () => {
+const HomePage = () => {
     return (
         <div className="home">
             <Sidebar />
@@ -21,4 +21,4 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default HomePage;

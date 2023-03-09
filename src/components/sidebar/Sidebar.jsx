@@ -1,5 +1,6 @@
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Link } from 'react-router-dom'
 
 import "./sidebar.scss"
 
@@ -7,7 +8,7 @@ const Sidebar = () => {
     return (
         <div className="sidebar">
             <div className="top">
-                <span className="logo">"По Шагам"</span>
+                <Link to="/"><span className="logo">"По Шагам"</span></Link>
             </div>
             <hr></hr>
             <div className="center">
@@ -19,7 +20,7 @@ const Sidebar = () => {
                     </li>
                     <li>
                         <MenuBookIcon className='icon' />
-                        <span>Мои курсы</span>
+                        <Link to="/courses"><span>Мои курсы</span></Link>
                     </li>
                 </ul>
             </div>
