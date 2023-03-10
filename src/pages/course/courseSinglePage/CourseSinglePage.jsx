@@ -4,11 +4,13 @@ import * as React from 'react';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import Button from '@mui/material/Button';
-import {Link} from 'react-router-dom';
+import {useParams, Link} from 'react-router-dom';
 
 import './courseSinglePage.scss';
 
 const CourseSinglePage = () => {
+
+    const {courseId} = useParams();
 
     const data = {
         title: "Python-Start 1-ый год",
@@ -74,7 +76,7 @@ const CourseSinglePage = () => {
                                 })
                             }
                             <Button>
-                                <Link to="/addLesson"><span className="addLesson">Добавить урок</span></Link>
+                                <Link to={`/addLesson/${module.idModule}`}><span className="addLesson">Добавить урок</span></Link>
                             </Button>
                         </div>
                     </List>
@@ -109,7 +111,7 @@ const CourseSinglePage = () => {
                     <div className="structureCourse">
                         <h3>Структура курса:</h3>
                         <Button>
-                            <Link to="/addModule"><span className="addModule">Добавить модуль</span></Link>
+                            <Link to={`/addModule/${courseId}`}><span className="addModule">Добавить модуль</span></Link>
                         </Button>
                         <List
                             sx={{ width: '100%', maxWidth: 600, bgcolor: 'background.paper' }}
