@@ -7,6 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import {Link} from 'react-router-dom';
+
+import './courseList.scss';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,14 +36,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(title, description, rating, countStudents, countTasks, createDate, updateDate) {
-  return { title, description, rating, countStudents, countTasks, createDate, updateDate };
+function createData(id, title, description, rating, countStudents, countTasks, createDate, updateDate) {
+  return {id, title, description, rating, countStudents, countTasks, createDate, updateDate };
 }
 
 const rows = [
-  createData('Python-Start 1-ый год', 'Курс для новичков', 6.0, 24, 3, '12.12.20', '12.12.21'),
-  createData('Python-Pro 1-ый год', 'Курс для подростков и тех, кто любит прогать', 6.0, 24, 5, '12.12.20', '12.12.21'),
-  createData('Обществознание', 'Курс для общестоведов', 6.0, 24, 50, '12.12.20', '12.12.21'),
+  createData(1, 'Python-Start 1-ый год', 'Курс для новичков', 6.0, 24, 3, '12.12.20', '12.12.21'),
+  createData(2, 'Python-Pro 1-ый год', 'Курс для подростков и тех, кто любит прогать', 6.0, 24, 5, '12.12.20', '12.12.21'),
+  createData(3, 'Обществознание', 'Курс для общестоведов', 6.0, 24, 50, '12.12.20', '12.12.21'),
 ];
 
 export default function CustomizedTables() {
@@ -62,7 +65,7 @@ export default function CustomizedTables() {
           {rows.map((row) => (
             <StyledTableRow key={row.name}>
               <StyledTableCell component="th" scope="row">
-                {row.title}
+                <Link className='link' to = {`${row.id}`}>{row.title}</Link>
               </StyledTableCell>
               <StyledTableCell align="right">{row.description}</StyledTableCell>
               <StyledTableCell align="right">{row.rating}</StyledTableCell>
