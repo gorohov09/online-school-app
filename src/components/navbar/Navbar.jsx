@@ -3,7 +3,13 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 import "./navbar.scss"
 
-const Navbar = () => {
+const Navbar = ({setIsAuth}) => {
+
+    const handleAuth = () => {
+        sessionStorage.clear();
+        setIsAuth(false);
+    }
+
     return (
         <div className="navbar">
             <div className="wrapper">
@@ -13,9 +19,9 @@ const Navbar = () => {
                 </div>
 
                 <div className="items">
-                    <div className="item">
+                    <div onClick={handleAuth} className="item">
                         <LogoutIcon className='icon'/>
-                        Выйти
+                        <span>Выйти</span>
                     </div>
                 </div>
             </div>

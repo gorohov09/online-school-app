@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom'
 
 import './coursesPage.scss';
 
-const CoursesPage = () => {
+const CoursesPage = ({setIsAuth}) => {
     return (
         <div className="course">
             <Sidebar />
             <div className="courseContainer">
-                <Navbar />
+                <Navbar setIsAuth={setIsAuth}/>
                 <div className="courses">
                     <div className="operation">
                         <Stack direction="row" spacing={2}>

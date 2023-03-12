@@ -6,12 +6,12 @@ import WidgetInfo from '../../components/widgetInfo/WidgetInfo';
 
 import "./homePage.scss";
 
-const HomePage = () => {
+const HomePage = ({setIsAuth}) => {
     return (
         <div className="home">
             <Sidebar />
             <div className="homeContainer">
-                <Navbar />
+                <Navbar setIsAuth={setIsAuth}/>
                 <div className="widgets">
                     <WidgetInfo type="students"/>
                     <WidgetInfo type="courses"/>

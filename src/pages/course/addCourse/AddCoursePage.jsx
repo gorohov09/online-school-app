@@ -12,7 +12,7 @@ import { useState } from "react";
 
 import './addCoursePage.scss';
 
-const AddCoursePage = () => {
+const AddCoursePage = ({setIsAuth}) => {
 
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -43,7 +43,7 @@ const AddCoursePage = () => {
         <div className="course">
             <Sidebar />
             <div className="courseContainer">
-                <Navbar />
+                <Navbar setIsAuth={setIsAuth}/>
                 <div className="addCourse">
                     {
                         !loading ?
