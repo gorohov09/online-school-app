@@ -5,16 +5,13 @@ import AddCoursePage from "./pages/course/addCourse/AddCoursePage";
 import CourseSinglePage from "./pages/course/courseSinglePage/CourseSinglePage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import useToken from "./hooks/useToken";
-import { useState } from "react";
 
 function App() {
-
-	const [isAuth, setIsAuth] = useState(false);
 	const { token, setToken } = useToken();
 
-	if(!token && !isAuth) {
+	if(!token) {
 		console.log('Токена нет')
-		return <LoginPage setToken={setToken} setIsAuth={setIsAuth}/>
+		return <LoginPage setToken={setToken}/>
 	}
 
   	return (
@@ -25,7 +22,7 @@ function App() {
 				<Route path="/courses" element={<CoursesPage setIsAuth={setIsAuth}/>} />
 				<Route path="/courses/:courseId" element={<CourseSinglePage setIsAuth={setIsAuth}/>} />
 				<Route path="/addCourse" element={<AddCoursePage setIsAuth={setIsAuth}/>} />
-            	<Route path="/login" element={<LoginPage />}/>
+            	<Route path="/login" element={<LoginPage setToken={setToken} setIsAuth={setIsAuth}/>}/>
             </Routes>
         </BrowserRouter>
     </div>
