@@ -1,4 +1,5 @@
 import {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import "./loginPage.scss";
 
 async function loginUser(credentials) {
@@ -12,6 +13,8 @@ async function loginUser(credentials) {
 }
 
 const LoginPage = ({setToken, setIsAuth}) => {
+
+	const navigate = useNavigate();
 
 	const [email, setEmail] = useState();
   	const [password, setPassword] = useState();
@@ -32,6 +35,14 @@ const LoginPage = ({setToken, setIsAuth}) => {
 		else{
 			setToken(data.token);
 			setIsAuth(true);
+			try {
+				navigate("/");
+			}
+			catch {
+
+			}
+			
+			
 		}
 		
 	}

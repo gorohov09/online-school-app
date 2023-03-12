@@ -1,13 +1,17 @@
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useNavigate } from "react-router-dom";
 
 import "./navbar.scss"
 
 const Navbar = ({setIsAuth}) => {
 
+    const navigate = useNavigate();
+
     const handleAuth = () => {
         sessionStorage.clear();
         setIsAuth(false);
+        navigate("/login");
     }
 
     return (
