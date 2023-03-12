@@ -36,14 +36,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(id, title, description, rating, countStudents, countTasks, createDate, updateDate) {
-  return {id, title, description, rating, countStudents, countTasks, createDate, updateDate };
+function createData(id, title, description, countStudents, countModules, countLessons, countTasks, createDate, updateDate) {
+  return {id, title, description, countStudents, countModules, countLessons, countTasks, createDate, updateDate };
 }
 
 const rows = [
-  createData(1, 'Python-Start 1-ый год', 'Курс для новичков', 6.0, 24, 3, '12.12.20', '12.12.21'),
-  createData(2, 'Python-Pro 1-ый год', 'Курс для подростков и тех, кто любит прогать', 6.0, 24, 5, '12.12.20', '12.12.21'),
-  createData(3, 'Обществознание', 'Курс для общестоведов', 6.0, 24, 50, '12.12.20', '12.12.21'),
+  createData(1, 'Python-Start 1-ый год', 'Курс для новичков', 5, 12, 24, 3, '12.12.20', '12.12.21'),
+  createData(2, 'Python-Pro 1-ый год', 'Курс для подростков и тех, кто любит прогать', 5, 12, 24, 5, '12.12.20', '12.12.21'),
+  createData(3, 'Обществознание', 'Курс для общестоведов', 24, 5, 12, 50, '12.12.20', '12.12.21'),
 ];
 
 export default function CustomizedTables() {
@@ -54,8 +54,9 @@ export default function CustomizedTables() {
           <TableRow>
             <StyledTableCell>Название курса</StyledTableCell>
             <StyledTableCell>Описание</StyledTableCell>
-            <StyledTableCell>Рейтинг</StyledTableCell>
-            <StyledTableCell align="right">Кол-во учеников</StyledTableCell>
+            <StyledTableCell>Кол-во учеников</StyledTableCell>
+            <StyledTableCell align="right">Кол-во модулей</StyledTableCell>
+            <StyledTableCell align="right">Кол-во уроков</StyledTableCell>
             <StyledTableCell align="right">Кол-во заданий</StyledTableCell>
             <StyledTableCell align="right">Дата создания</StyledTableCell>
             <StyledTableCell align="right">Дата изменения</StyledTableCell>
@@ -68,8 +69,9 @@ export default function CustomizedTables() {
                 <Link className='link' to = {`${row.id}`}>{row.title}</Link>
               </StyledTableCell>
               <StyledTableCell align="right">{row.description}</StyledTableCell>
-              <StyledTableCell align="right">{row.rating}</StyledTableCell>
               <StyledTableCell align="right">{row.countStudents}</StyledTableCell>
+              <StyledTableCell align="right">{row.countModules}</StyledTableCell>
+              <StyledTableCell align="right">{row.countLessons}</StyledTableCell>
               <StyledTableCell align="right">{row.countTasks}</StyledTableCell>
               <StyledTableCell align="right">{row.createDate}</StyledTableCell>
               <StyledTableCell align="right">{row.updateDate}</StyledTableCell>

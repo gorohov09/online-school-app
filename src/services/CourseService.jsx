@@ -27,6 +27,12 @@ class CourseService {
         return await res.json();
     }
 
+    getCourseById = async (id) => {
+        console.log('Запрос отправлен');
+        const res = await this.getResource(this._apiBase + `course/${id}`);
+        return res;
+    }
+
     
 
 

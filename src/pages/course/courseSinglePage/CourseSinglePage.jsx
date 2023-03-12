@@ -1,10 +1,13 @@
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Navbar from "../../../components/navbar/Navbar";
-import * as React from 'react';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import Button from '@mui/material/Button';
 import {useParams, Link} from 'react-router-dom';
+import { useState, useEffect } from "react";
+import CourseService from "../../../services/CourseService";
+import Spinner from "../../../components/spinner/Spinner";
+import { Fragment } from "react";
 
 import './courseSinglePage.scss';
 
@@ -12,81 +15,57 @@ const CourseSinglePage = () => {
 
     const {courseId} = useParams();
 
-    const data = {
-        title: "Python-Start 1-ый год",
-        description: "Этот курс для маленьких ребят, которые хотят программировать",
-        dateCreate: '12.12.2005',
-        dateUpdate: '12.12.2007',
-        modules:[
-            {
-              idModule: 123,
-              titleModule: "Введение",
-              order: 1,
-              lessons:[
-                {
-                    lessonId: 123,
-                    order: 1,
-                    lessonTitle: "Оператор Print"
-                },
-                {
-                    lessonId: 124,
-                    order: 2,
-                    lessonTitle: "Оператор Input"
-                }
-              ]
-            },
-            {
-                idModule: 124,
-                titleModule: "Циклы",
-                order: 2,
-                lessons:[
-                  {
-                      lessonId: 123,
-                      order: 1,
-                      lessonTitle: "Цикл while"
-                  },
-                  {
-                      lessonId: 124,
-                      order: 2,
-                      lessonTitle: "Цикл for"
-                  }
-                ]
-              },
-          ]
-    }
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    const courseService = new CourseService();
+
+    useEffect(() => {
+        courseService.getCourseById(courseId)
+            .then(data => setData(data))
+            .then(setLoading(false));
+    }, []);
 
     const RenderItems = (data) => {
         return data.modules.map(module => {
             return (
-                <>
+                <Fragment key={module.moduleId}>
                     <ListItemButton>
-                        <Link to={`/module/${module.idModule}`}><span>{module.order}. {module.titleModule}</span></Link>
+                        <Link to={`/module/${module.moduleId}`}><span>{module.order}. {module.name}</span></Link>
                     </ListItemButton>
                     <List component="div">
                         <div className="lessons">
                             {
                                 module.lessons.map(lesson => {
                                     return (
-                                        <>
+                                        <Fragment key={lesson.lessonId}>
                                             <ListItemButton sx={{ pl: 10 }}>
-                                                <span>{lesson.order}. {lesson.lessonTitle}</span>
+                                                <span>{lesson.order}. {lesson.name}</span>
                                             </ListItemButton>
-                                        </>
+                                        </Fragment>
                                     )
                                 })
                             }
                             <Button>
-                                <Link to={`/addLesson/${module.idModule}`}><span className="addLesson">Добавить урок</span></Link>
+                                <Link to={`/addLesson/${module.moduleId}`}><span className="addLesson">Добавить урок</span></Link>
                             </Button>
                         </div>
                     </List>
-                </>
+                </Fragment>
             )
         });
     }
 
-    const {title, description, dateCreate, dateUpdate} = data;
-    const items = RenderItems(data)
+    let name, description, create, update;
+    let items;
+    if (data != null){
+        name = data.name;
+        description = data.description;
+        create = data.create.substring(0, data.create.indexOf('T')) + ' ' + data.create.substring(data.create.indexOf('T') + 1, data.create.length - 8);
+        update = data.update.substring(0, data.update.indexOf('T')) + ' ' + data.update.substring(data.update.indexOf('T') + 1, data.update.length - 8);;
+        items = RenderItems(data);
+    }
+        
 
     return (
         <div className="course">
@@ -94,32 +73,41 @@ const CourseSinglePage = () => {
             <div className="courseContainer">
                 <Navbar />
                 <div className="singleCourse">
-                    <h2>{title}</h2>
-                    <h3>Описание:</h3>
-                    <span>{description}</span>
-                    <div className="dateCourse">
-                        <div className="createDate">
-                            <h3>Дата создания:</h3>
-                            <span>{dateCreate}</span>
-                        </div>
-                        <div className="updateDate">
-                            <h3>Дата обновления:</h3>
-                            <span>{dateUpdate}</span>
-                        </div>
-                    </div>
+                    {
+                        !loading ?
+                        <>
+                            <h2>{name}</h2>
+                            <h3>Описание:</h3>
+                            <span>{description}</span>
+                            <div className="dateCourse">
+                                <div className="createDate">
+                                    <h3>Дата создания:</h3>
+                                    <span>{create}</span>
+                                </div>
+                                <div className="updateDate">
+                                    <h3>Дата обновления:</h3>
+                                    <span>{update}</span>
+                                </div>
+                            </div>
 
-                    <div className="structureCourse">
-                        <h3>Структура курса:</h3>
-                        <Button>
-                            <Link to={`/addModule/${courseId}`}><span className="addModule">Добавить модуль</span></Link>
-                        </Button>
-                        <List
-                            sx={{ width: '100%', maxWidth: 600, bgcolor: 'background.paper' }}
-                            component="nav"
-                            aria-labelledby="nested-list-subheader">       
-                            {items}
-                        </List>
-                    </div>
+                            <div className="structureCourse">
+                                <h3>Структура курса:</h3>
+                                <Button>
+                                    <Link to={`/addModule/${courseId}`}><span className="addModule">Добавить модуль</span></Link>
+                                </Button>
+                                <List
+                                    sx={{ width: '100%', maxWidth: 600, bgcolor: 'background.paper' }}
+                                    component="nav"
+                                    aria-labelledby="nested-list-subheader">       
+                                    {items}
+                                </List>
+                            </div>
+                        </>
+                        :
+                        <>
+                            <Spinner />
+                        </>
+                    }
                 </div>
             </div>
         </div>
