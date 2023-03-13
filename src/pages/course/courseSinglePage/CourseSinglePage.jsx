@@ -62,7 +62,7 @@ const CourseSinglePage = () => {
         name = data.name;
         description = data.description;
         create = data.create.substring(0, data.create.indexOf('T')) + ' ' + data.create.substring(data.create.indexOf('T') + 1, data.create.length - 8);
-        update = data.update.substring(0, data.update.indexOf('T')) + ' ' + data.update.substring(data.update.indexOf('T') + 1, data.update.length - 8);;
+        update = data.update.substring(0, data.update.indexOf('T')) + ' ' + data.update.substring(data.update.indexOf('T') + 1, data.update.length - 8);
         items = RenderItems(data);
     }
         

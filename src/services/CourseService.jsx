@@ -1,8 +1,18 @@
 class CourseService {
     _apiBase = 'http://localhost:5259/api/';
 
+    getToken = () => {
+        const tokenString = sessionStorage.getItem('token');
+        return JSON.parse(tokenString);
+    }
+
     getResource = async (url) => {
-        let res = await fetch(url);
+        let res = await fetch(url, {
+            metthod: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + this.getToken()
+            }
+        });
     
         if (!res.ok) {
             throw new Error(`Could not fetch ${url}, status: ${res.status}`);
@@ -14,7 +24,10 @@ class CourseService {
     saveCourse = async (data) => {
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.getToken()
+            },
             body: JSON.stringify(data)
         };
 
@@ -28,12 +41,14 @@ class CourseService {
     }
 
     getCourseById = async (id) => {
-        console.log('Запрос отправлен');
         const res = await this.getResource(this._apiBase + `course/${id}`);
         return res;
     }
 
-    
+    getTeacherCourses = async () => {
+        const res = await this.getResource(this._apiBase + `course/teacherCourses`);
+        return res;
+    }
 
 
 }

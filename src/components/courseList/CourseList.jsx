@@ -8,6 +8,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {Link} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import CourseService from '../../services/CourseService';
+import Spinner from '../spinner/Spinner';
+
 
 import './courseList.scss';
 
@@ -36,49 +40,71 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(id, title, description, countStudents, countModules, countLessons, countTasks, createDate, updateDate) {
-  return {id, title, description, countStudents, countModules, countLessons, countTasks, createDate, updateDate };
-}
-
-const rows = [
-  createData(1, 'Python-Start 1-ый год', 'Курс для новичков', 5, 12, 24, 3, '12.12.20', '12.12.21'),
-  createData(2, 'Python-Pro 1-ый год', 'Курс для подростков и тех, кто любит прогать', 5, 12, 24, 5, '12.12.20', '12.12.21'),
-  createData(3, 'Обществознание', 'Курс для общестоведов', 24, 5, 12, 50, '12.12.20', '12.12.21'),
-];
-
 export default function CustomizedTables() {
-  return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Название курса</StyledTableCell>
-            <StyledTableCell>Описание</StyledTableCell>
-            <StyledTableCell>Кол-во учеников</StyledTableCell>
-            <StyledTableCell align="right">Кол-во модулей</StyledTableCell>
-            <StyledTableCell align="right">Кол-во уроков</StyledTableCell>
-            <StyledTableCell align="right">Кол-во заданий</StyledTableCell>
-            <StyledTableCell align="right">Дата создания</StyledTableCell>
-            <StyledTableCell align="right">Дата изменения</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                <Link className='link' to = {`${row.id}`}>{row.title}</Link>
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.description}</StyledTableCell>
-              <StyledTableCell align="right">{row.countStudents}</StyledTableCell>
-              <StyledTableCell align="right">{row.countModules}</StyledTableCell>
-              <StyledTableCell align="right">{row.countLessons}</StyledTableCell>
-              <StyledTableCell align="right">{row.countTasks}</StyledTableCell>
-              <StyledTableCell align="right">{row.createDate}</StyledTableCell>
-              <StyledTableCell align="right">{row.updateDate}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+
+	const [data, setData] = useState(null);
+  	const [loading, setLoading] = useState(true);
+
+  	const courseService = new CourseService();
+
+	useEffect(() => {
+		courseService.getTeacherCourses()
+				.then(data => setData(data))
+				.then(setLoading(false));
+	}, []);
+
+	const renderItems = (data) => {
+		return data.courses.map((course) => (
+			<StyledTableRow key={course.name}>
+				<StyledTableCell component="th" scope="row">
+					<Link className='link' to = {`${course.courseId}`}>{course.name}</Link>
+				</StyledTableCell>
+				<StyledTableCell align="right">{course.description}</StyledTableCell>
+				<StyledTableCell align="right">{course.countStudents}</StyledTableCell>
+				<StyledTableCell align="right">{course.countModules}</StyledTableCell>
+				<StyledTableCell align="right">{course.countLessons}</StyledTableCell>
+				<StyledTableCell align="right">{course.countTasks}</StyledTableCell>
+				<StyledTableCell align="right">{course.create.substring(0, course.create.indexOf('T'))}</StyledTableCell>
+				<StyledTableCell align="right">{course.update.substring(0, course.update.indexOf('T'))}</StyledTableCell>
+			</StyledTableRow>
+		))
+	};
+
+	let items;
+	if (data !== null){
+		items = renderItems(data);
+	}
+
+
+  	return (
+		!loading ?
+		<>
+			<TableContainer component={Paper}>
+      			<Table sx={{ minWidth: 700 }} aria-label="customized table">
+        		<TableHead>
+          		<TableRow>
+            		<StyledTableCell>Название курса</StyledTableCell>
+            		<StyledTableCell>Описание</StyledTableCell>
+            		<StyledTableCell>Кол-во учеников</StyledTableCell>
+            		<StyledTableCell align="right">Кол-во модулей</StyledTableCell>
+            		<StyledTableCell align="right">Кол-во уроков</StyledTableCell>
+            		<StyledTableCell align="right">Кол-во заданий</StyledTableCell>
+            		<StyledTableCell align="right">Дата создания</StyledTableCell>
+            		<StyledTableCell align="right">Дата изменения</StyledTableCell>
+          		</TableRow>
+        		</TableHead>
+        		<TableBody>
+					{
+						items
+					}
+        		</TableBody>
+      		</Table>
+    		</TableContainer>
+		</>
+		:
+		<>
+		  	<Spinner />
+		</>
+
   );
 }
