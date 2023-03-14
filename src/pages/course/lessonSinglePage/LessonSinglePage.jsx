@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import CourseService from "../../../services/CourseService";
 import Spinner from "../../../components/spinner/Spinner";
 import { Fragment } from "react";
+import TaskDetails from "../../../components/taskDetails/TaskDetails";
 
 import './lessonSinglePage.scss';
 
@@ -55,30 +56,7 @@ const LessonSinglePage = () => {
     const renderTasks = (data) => {
         return data.tasks.map(task => {
             return (
-                <div className="detailsTask">
-                    <div className="name">
-                        <p>{task.name}</p>
-                    </div>
-                    <div className="info">
-                        <p>Номер задачи: <span className="inf">{task.order}</span></p>
-                        <p>Тип задачи: <span className="inf">{task.type}</span></p>
-                    </div>
-                    <div className="questionDescr">
-                        <div className="descr">
-                            <p>Описание: <span className="inf">{task.description}</span></p>
-                        </div>
-                        <div className="question">
-                            <p>Вопрос: <span className="inf">{task.question}</span></p>
-                        </div>
-                    </div>
-                    <div className="answer">
-                        <Button variant="contained" color="success">
-                            Посмотреть правильный ответ
-                        </Button>
-                        <p className="hide">{task.rightAnswer}</p>
-                    </div>
-                    
-                </div>
+                <TaskDetails task={task}/>
             )
         });
     }
