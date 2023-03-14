@@ -5,6 +5,7 @@ import AddCoursePage from "./pages/course/addCourse/AddCoursePage";
 import AddLessonPage from "./pages/course/addLesson/AddLessonPage";
 import AddModulePage from "./pages/course/addModule/AddModulePage";
 import CourseSinglePage from "./pages/course/courseSinglePage/CourseSinglePage";
+import LessonSinglePage from "./pages/course/lessonSinglePage/LessonSinglePage";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import useToken from "./hooks/useToken";
@@ -28,6 +29,7 @@ function App() {
             	<Route path="/login" element={<LoginPage setToken={setToken} setIsAuth={setIsAuth}/>}/>
 				<Route path="/addModule/:courseId" element={<AddModulePage setIsAuth={setIsAuth} />}/>
 				<Route path="/addLesson/:moduleId" element={<AddLessonPage setIsAuth={setIsAuth} />}/>
+				<Route path="/lessons/:lessonId" element={<LessonSinglePage setIsAuth={setIsAuth} />}/>
 				
             </Routes>
     </div>
