@@ -78,6 +78,25 @@ class CourseService {
         return await res.json();
     }
 
+    saveTask = async (data, lessonId) => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.getToken()
+            },
+            body: JSON.stringify(data)
+        };
+
+        let res = await fetch(this._apiBase + `course/lesson/${lessonId}/addTask`, requestOptions);
+
+        if (!res.ok) {
+            throw new Error(`status: ${res.status}`);
+        }
+        
+        return await res.json();
+    }
+
     getCourseById = async (id) => {
         const res = await this.getResource(this._apiBase + `course/${id}`);
         return res;
