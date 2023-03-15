@@ -1,0 +1,64 @@
+.course_item {
+    margin: 30px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid #6439ff;
+    border-radius: 30px;
+    padding: 10px;
+
+    .title_course_block {
+        margin-bottom: 10px;
+        .title_course {
+            font-size: 30px;
+            font-weight: 700;
+            color: #6439ff;
+        }
+    }
+
+    .title_description_block {
+        margin-bottom: 10px;
+        .title_description {
+            font-size: 20px;
+            font-weight: 400;
+            color: #6439ff;
+        }
+    }
+
+    .course_statistic {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+
+        .left_statistic {
+
+            .count_students_course {
+                font-size: 17px;
+                font-weight: 500;
+                color: #6439ff;
+            }
+        }
+
+        .right_statistic {
+
+            .count_tasks_course {
+                font-size: 17px;
+                font-weight: 500;
+                color: #6439ff;
+            }
+        }
+
+    }
+
+    .enroll {
+        width:fit-content;
+        align-self:center;
+    }
+
+    .enroll_course {
+        font-size: 20px;
+        color: #6439ff;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+}

@@ -1,0 +1,26 @@
+.wrapper_home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .all_courses {
+        display: flex;
+        flex-direction: column;
+
+        .popular_courses {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .title_courses {
+            font-size: 45px;
+            font-weight: 700;
+            color: #6439ff;
+            margin-top: 20px;
+        }
+    }
+}

@@ -1,0 +1,34 @@
+.structue_course_sidebar {
+    flex: 2;
+    border-right: 0.5px solid lightgray;
+    min-height: 100vh;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+
+    h3 {
+        font-size: 25px;
+        font-weight: 700;
+        color: #6439ff;
+    }
+
+    .moduleButton {
+        text-decoration: none;
+        cursor: default;
+        font-size: 25px;
+        font-weight: 700;
+        color: #6439ff;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .lessonButton {
+        font-size: 22px;
+        font-weight: 700;
+        color: #6439ff;;
+    }
+}

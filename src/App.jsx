@@ -6,6 +6,7 @@ import AddLessonPage from "./pages/course/addLesson/AddLessonPage";
 import AddModulePage from "./pages/course/addModule/AddModulePage";
 import CourseSinglePage from "./pages/course/courseSinglePage/CourseSinglePage";
 import LessonSinglePage from "./pages/course/lessonSinglePage/LessonSinglePage";
+import CourseForStudentPage from "./pages/courseForStudent/CourseForStudentPage";
 import AddTaskPage from "./pages/course/addTask/AddTaskPage";
 import HomeStudentPage from "./pages/homeStudent/HomeStudentPage";
 import { Routes, Route } from "react-router-dom";
@@ -35,6 +36,7 @@ function App() {
 				<Route path="/addTask/:lessonId" element={<AddTaskPage setIsAuth={setIsAuth} />}/>
 				
 				<Route path="/student/" element={<HomeStudentPage setIsAuth={setIsAuth} />}/>
+				<Route path="/courseForStudent/:courseId" element={<CourseForStudentPage setIsAuth={setIsAuth} />}/>
             </Routes>
     </div>
   );
