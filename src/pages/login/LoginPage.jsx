@@ -26,8 +26,6 @@ const LoginPage = ({setToken, setIsAuth}) => {
 		  	password: password
 		});
 
-		console.log(data);
-
 		if (data?.status === 500){
 			console.log('Очистка формы')
 			e.target.reset(); 
@@ -35,14 +33,10 @@ const LoginPage = ({setToken, setIsAuth}) => {
 		else{
 			setToken(data.token);
 			setIsAuth(true);
-			try {
+			if (data.typeUser === 'teacher')
 				navigate("/");
-			}
-			catch {
-
-			}
-			
-			
+			else
+				navigate("/student")
 		}
 		
 	}
