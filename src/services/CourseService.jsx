@@ -102,6 +102,11 @@ class CourseService {
         return res;
     }
 
+    getLessonById = async (id) => {
+        const res = await this.getResource(this._apiBase + `lesson/${id}`);
+        return res;
+    }
+
     getTeacherCourses = async () => {
         const res = await this.getResource(this._apiBase + `course/teacherCourses`);
         return res;

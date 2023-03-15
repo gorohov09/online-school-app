@@ -14,44 +14,18 @@ import './lessonSinglePage.scss';
 
 const LessonSinglePage = () => {
 
-    // const {courseId} = useParams();
+    const {lessonId} = useParams();
 
-    // const [data, setData] = useState(null);
-    // const [loading, setLoading] = useState(true);
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    // const courseService = new CourseService();
+    const courseService = new CourseService();
 
-    // useEffect(() => {
-    //     courseService.getCourseById(courseId)
-    //         .then(data => setData(data))
-    //         .then(setLoading(false));
-    // }, []);
-
-    const data = {
-        id: '123',
-        name: "Механическое движение",
-        embedHtmlVideo: '<iframe width="480" height="270" src="//www.youtube.com/embed/eZy2wp5XINY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
-        tasks: [
-            {
-                id: '125',
-                order: 1,
-                type: 'freeResponse',
-                name: 'Что ты знаешь о природе?',
-                description: 'В мире жвут 100 мил. человек',
-                question: 'Сколько человек живут в мире?',
-                rightAnswer: '100 мил.'
-            },
-            {
-                id: '126',
-                order: 2,
-                type: 'freeResponse',
-                name: 'Что ты знаешь о природе?',
-                description: 'В мире жвут 100 мил. человек',
-                question: 'Сколько человек живут в мире?',
-                rightAnswer: '200 мил.'
-            }
-        ]
-    }
+    useEffect(() => {
+        courseService.getLessonById(lessonId)
+            .then(data => setData(data))
+            .then(setLoading(false));
+    }, []);
 
     const renderTasks = (data) => {
         return data.tasks.map(task => {
@@ -68,8 +42,7 @@ const LessonSinglePage = () => {
         embedHtmlVideo = data.embedHtmlVideo;
         tasks = renderTasks(data);
     }
-        
-
+    
     return (
         <div className="lesson">
             <Sidebar />
@@ -77,12 +50,15 @@ const LessonSinglePage = () => {
                 <Navbar />
                 <div className="singleLesson">
                     {
-                        !false ?
+                        !loading ?
                         <>
                             <h2>{name}</h2>
                             <h3>Теоретическое видео:</h3>
                             <div className="video" dangerouslySetInnerHTML={{ __html: embedHtmlVideo }} />
                             <h3>Задачи на урок:</h3>
+                            <Button>
+                                    <Link to={`/addTask/${lessonId}`}><span className="addTask">Добавить задачу</span></Link>
+                            </Button>
                             <div className="tasks">
                                 {tasks}
                             </div>

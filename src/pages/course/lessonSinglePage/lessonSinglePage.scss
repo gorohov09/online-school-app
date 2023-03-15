@@ -9,6 +9,15 @@
             flex-direction: column;
             padding: 40px;
             justify-content: center;
+
+            .addTask {
+                color: white;
+                background-color: #6439ff;
+                padding: 10px;
+                font-size: 15px;
+                border-radius: 20px;
+                text-decoration: none;
+            }
             
             h2 {
                 font-size: 52px;
@@ -35,6 +44,7 @@
             .tasks{
                 display: flex;
                 justify-content: space-around;
+                flex-wrap: wrap;
                 margin-top: 20px;
             }
         }

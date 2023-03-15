@@ -9,15 +9,6 @@ const TaskDetails = ({task}) => {
 
     const {name, order, type, description, question, rightAnswer} = task;
     const classAnswer = isVisibleRightAnswer ? '' : 'hide';
-    let typeTask;
-    switch (type){
-        case "freeResponse":
-            typeTask = "Свободный ответ";
-            break;
-        
-        default:
-            break;
-    }
 
     return (
         <div className="detailsTask">
@@ -26,7 +17,7 @@ const TaskDetails = ({task}) => {
             </div>
             <div className="info">
                 <p>Номер задачи: <span className="inf">{order}</span></p>
-                <p>Тип задачи: <span className="inf">{typeTask}</span></p>
+                <p>Тип задачи: <span className="inf">{type}</span></p>
             </div>
             <div className="questionDescr">
                 <div className="descr">

@@ -54,13 +54,16 @@ const AddTaskPage = ({setIsAuth}) => {
         }
 
         console.log(data);
+        console.log(lessonId);
 
         const res = await courseService.saveTask(data, lessonId)
             .then(setLoading(loading => true))
         
         if (res)
-            navigate(`/lesson/${lessonId}`)
+            navigate(`/lessons/${lessonId}`)
     }
+
+    console.log(lessonId);
 
     return (
         <div className="task">

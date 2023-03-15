@@ -40,7 +40,7 @@ const CourseSinglePage = () => {
                                     return (
                                         <Fragment key={lesson.lessonId}>
                                             <ListItemButton sx={{ pl: 10 }}>
-                                                <span>{lesson.order}. {lesson.name}</span>
+                                                <Link to={`/lessons/${lesson.lessonId}`}><span>{lesson.order}. {lesson.name}</span></Link>
                                             </ListItemButton>
                                         </Fragment>
                                     )
