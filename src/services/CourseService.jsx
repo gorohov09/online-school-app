@@ -99,6 +99,7 @@ class CourseService {
 
     getCourseById = async (id) => {
         const res = await this.getResource(this._apiBase + `course/${id}`);
+        console.log(res);
         return res;
     }
 
@@ -112,6 +113,10 @@ class CourseService {
         return res;
     }
 
+    getFirstLessonByCourse = async (courseId) => {
+        const res = await this.getResource(this._apiBase + `lesson/firstLesson/${courseId}`);
+        return res;
+    }
 
 }
 
