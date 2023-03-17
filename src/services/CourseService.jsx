@@ -115,6 +115,25 @@ class CourseService {
         return await res.json();
     }
 
+    makeAttempt = async (data, taskId) => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.getToken()
+            },
+            body: JSON.stringify(data)
+        };
+
+        let res = await fetch(this._apiBase + `course/task/${taskId}/makeAttempt`, requestOptions);
+
+        if (!res.ok) {
+            throw new Error(`status: ${res.status}`);
+        }
+        
+        return await res.json();
+    }
+
     getCourseById = async (id) => {
         const res = await this.getResource(this._apiBase + `course/${id}`);
         console.log(res);
@@ -141,6 +160,20 @@ class CourseService {
         return res;
     }
 
+    getTasksByLesson = async (lessonId) => {
+        const res = await this.getResource(this._apiBase + `student/${lessonId}/tasks`);
+        return res;
+    }
+
+    getFirstTaskByLesson = async (lessonId) => {
+        const res = await this.getResource(this._apiBase + `task/firstLessonTsk/${lessonId}`);
+        return res;
+    }
+
+    getTaskById = async (taskId) => {
+        const res = await this.getResource(this._apiBase + `task/${taskId}`);
+        return res;
+    }
 }
 
 export default CourseService;

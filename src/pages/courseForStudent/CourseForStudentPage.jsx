@@ -55,7 +55,7 @@ const CourseForStudentPage = ({setIsAuth}) => {
                             <div className="video" dangerouslySetInnerHTML={{ __html: embedHtmlVideo }} />
                             <div className="tasksButton">
                                 <Button>
-                                    <Link to={`/solveTask/${idLesson}`}><span className="solveTask">Решать задания</span></Link>
+                                    <Link to={`/solveTasks/${idLesson}`}><span className="solveTask">Решать задания</span></Link>
                                 </Button>
                             </div>
                         </>
