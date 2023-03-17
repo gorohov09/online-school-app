@@ -9,10 +9,36 @@
 
     .title_course_block {
         margin-bottom: 10px;
-        .title_course {
-            font-size: 30px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .name {
+            width: 200px;
+            .title_course {
+                font-size: 26px;
+                font-weight: 700;
+                color: #6439ff;
+            }
+        }
+        
+
+        .enrollLabel {
+            font-size: 20px;
+            padding: 5px;
+            border-radius: 20px;
             font-weight: 700;
-            color: #6439ff;
+            color: white;
+            background-color: green;
+        }
+
+        .noEnrollLabel {
+            font-size: 20px;
+            padding: 5px;
+            border-radius: 20px;
+            font-weight: 700;
+            color: white;
+            background-color: red;
         }
     }
 
@@ -56,6 +82,18 @@
     }
 
     .enroll_course {
+        font-size: 20px;
+        color: #6439ff;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .toCourse {
+        width:fit-content;
+        align-self:center;
+    }
+
+    .toCourse_student {
         font-size: 20px;
         color: #6439ff;
         font-weight: 700;

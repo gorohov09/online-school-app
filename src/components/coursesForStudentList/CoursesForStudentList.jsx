@@ -1,38 +1,49 @@
 import CourseItem from "../courseItem/CourseItem";
+import CourseService from "../../services/CourseService";
+import Spinner from "../spinner/Spinner";
+
+import { useState, useEffect } from "react";
 
 import "./coursesForStudentList.scss";
 
 const CoursesForStudentList = () => {
 
-    const data = {
-        courses: [
-            {
-                name: "Python-Start 1-ый год",
-                description: "Этот кур предназначен для получения первичных навыков решения заданий на любом языке программирования",
-                countStudents: 15,
-                countTasks: 13
-            },
-            {
-                name: "Python-Start 2-ый год",
-                description: "Этот кур предназначен для получения первичных навыков решения заданий на любом языке программирования",
-                countStudents: 15,
-                countTasks: 13
-            }
-        ]
-    };
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    const courseService = new CourseService();
+
+    useEffect(() => {
+        courseService.getPopularCourses()
+            .then(data => setData(data))
+            .then(setLoading(false));
+    }, []);
 
     const renderCourses = () => {
-        return data.courses.map(course => {
-            return <CourseItem name={course.name} description={course.description} countStudents={course.countStudents} countTasks={course.countTasks} />
+        return data.popularCourses.map(course => {
+            return <CourseItem courseId={course.courseId} name={course.name} description={course.description} countStudents={course.countStudents} countTasks={course.countTasks} isEnroll={course.isEnroll}/>
         })
     }
 
-    const items = renderCourses();
+    let items;
+    if (data != null){
+        items = renderCourses();
+    }
 
     return (
         <>
-            {items}
+            {
+                !loading ?
+                <>
+                    {items}
+                </>
+                :
+                <>
+                    <Spinner />
+                </>
+        }
         </>
+        
     )
 }
 

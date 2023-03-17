@@ -7,6 +7,8 @@
     .all_courses {
         display: flex;
         flex-direction: column;
+        padding-left: 50px;
+        padding-right: 50px;
 
         .popular_courses {
             display: flex;

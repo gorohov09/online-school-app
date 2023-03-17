@@ -97,6 +97,24 @@ class CourseService {
         return await res.json();
     }
 
+    enrollCourse = async (courseId) => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.getToken()
+            },
+        };
+
+        let res = await fetch(this._apiBase + `course/enroll/${courseId}`, requestOptions);
+
+        if (!res.ok) {
+            throw new Error(`status: ${res.status}`);
+        }
+        
+        return await res.json();
+    }
+
     getCourseById = async (id) => {
         const res = await this.getResource(this._apiBase + `course/${id}`);
         console.log(res);
@@ -115,6 +133,11 @@ class CourseService {
 
     getFirstLessonByCourse = async (courseId) => {
         const res = await this.getResource(this._apiBase + `lesson/firstLesson/${courseId}`);
+        return res;
+    }
+
+    getPopularCourses = async () => {
+        const res = await this.getResource(this._apiBase + `course/popularCourses/`);
         return res;
     }
 
