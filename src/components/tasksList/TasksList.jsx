@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import CourseService from '../../services/CourseService';
 import Spinner from '../spinner/Spinner';
 
-const TasksList = ({lessonId, setTaskId, render}) => {
+const TasksList = ({lessonId, setTaskId, render, taskId}) => {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -26,7 +26,11 @@ const TasksList = ({lessonId, setTaskId, render}) => {
 
     const renderItems = () => {
         return data.tasks.map(task => {
-            return <TaskItem setTaskId={setTaskId} key={task.id} id={task.id} isSolve={task.isSolve} isFirstAttempt={task.isFirstAttempt} order={task.order}/>
+            let isSelect = false;
+            if (task.id === taskId)
+                isSelect = true;
+
+            return <TaskItem setTaskId={setTaskId} key={task.id} id={task.id} isSolve={task.isSolve} isFirstAttempt={task.isFirstAttempt} order={task.order} isSelect={isSelect}/>
         })
     }
 

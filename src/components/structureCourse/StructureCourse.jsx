@@ -57,6 +57,9 @@ const StructureCourse = ({courseId, setLessonId}) => {
                 data != null ?
                 <>
                     <h3>{data.name}</h3>
+                    <div className="progress">
+                        <div style={{ width: `${data.persentPassing}%` }} className="progress__inner"></div>
+                    </div>
                     <h4>Пройден на {data.persentPassing}%</h4>
                     <List
                         sx={{ width: '100%', maxWidth: 600, bgcolor: 'background.paper' }}

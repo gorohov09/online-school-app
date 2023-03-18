@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 3px solid rgb(144, 8, 255);
+    //border: 3px solid rgb(144, 8, 255);
     background-color: red;
     width: 50px;
     height: 50px;
@@ -15,6 +15,10 @@
         color: white;
         font-weight: 700;
     }
+}
+
+.select_task {
+    border: 3px solid yellow;
 }
 
 .firt_attempt {

@@ -41,7 +41,7 @@ const SolveTasksPage = () => {
 
     return (
         <div className="solveTasks_wrapper">
-            <TasksList lessonId={lessonId} setTaskId={setTaskId} render={render}/>
+            <TasksList lessonId={lessonId} setTaskId={setTaskId} render={render} taskId={taskId}/>
             {
                 data != null ?
                 <>
