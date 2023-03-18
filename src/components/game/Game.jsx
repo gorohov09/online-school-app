@@ -20,7 +20,7 @@ const Game = ({taskInform, render, setRender}) => {
             return;
         }
         setAttempt(null);
-        setAnswer(taskInform?.lastAnswerAttempt);
+        setAnswer(taskInform?.lastAnswerAttempt == null ? '' : taskInform?.lastAnswerAttempt);
     }, [taskInform])
 
     const courseService = new CourseService();
@@ -41,7 +41,7 @@ const Game = ({taskInform, render, setRender}) => {
         setRender(!render);
     }
 
-    const classInput = attempt == null ? 'noAttempt' : (attempt ? 'success' : 'error');
+    //const classInput = attempt == null ? 'noAttempt' : (attempt ? 'success' : 'error');
 
     let task;
     if (taskInform.type === 'Свободный ответ'){
@@ -52,7 +52,7 @@ const Game = ({taskInform, render, setRender}) => {
                         taskInform.lastAttempt != null ?
                         <>
                             <p className='attempt'>Последняя попытка: {taskInform.lastAttempt.substring(0, taskInform.lastAttempt.indexOf('T')) + ' ' + taskInform.lastAttempt.substring(taskInform.lastAttempt.indexOf('T') + 1, taskInform.lastAttempt.length - 8)}</p>
-                            <p className='isSolveAttempt'>Задача решена {taskInform.lastResultAttempt ? 'правильно' : 'неправильно'}</p>
+                            <p className='isSolveAttempt'>В последний раз задача решена <span className={taskInform.lastResultAttempt ? 'correct' : 'error'}>{taskInform.lastResultAttempt ? 'правильно' : 'неправильно'}</span></p>
                         </>
                         :
                         <>
@@ -65,7 +65,6 @@ const Game = ({taskInform, render, setRender}) => {
                 <h2>{taskInform.question}</h2>
                 <div className="text_field_block">
                     <TextField
-                        className={classInput}
                         id="outlined-controlled"
                         label="Введи ответ"
                         value={answer}

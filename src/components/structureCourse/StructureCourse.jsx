@@ -1,11 +1,8 @@
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
-import Button from '@mui/material/Button';
 import { Fragment } from "react";
-import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import CourseService from '../../services/CourseService';
-
 import './structureCourse.scss';
 import { Spinner } from 'react-bootstrap';
 
@@ -17,52 +14,10 @@ const StructureCourse = ({courseId, setLessonId}) => {
     const courseService = new CourseService();
 
     useEffect(() => {
-        console.log('Получение структуры курса')
         courseService.getCourseById(courseId)
             .then(data => setData(data))
             .then(setLoading(false));
     }, []);
-
-    // const data = {
-    //     courseId: 123,
-    //     name_course: "Python-Start",
-    //     modules:[
-    //         {
-    //             moduleId: 123,
-    //             order: 1,
-    //             name: "Введение",
-    //             lessons:[
-    //                 {
-    //                     lessonId: 123,
-    //                     order: 1,
-    //                     name: "Оператор Print"
-    //                 },
-    //                 {
-    //                     lessonId: 124,
-    //                     order: 2,
-    //                     name: "Оператор Input"
-    //                 }
-    //             ]
-    //         },
-    //         {
-    //             moduleId: 123,
-    //             order: 2,
-    //             name: "Введение",
-    //             lessons:[
-    //                 {
-    //                     lessonId: 123,
-    //                     order: 1,
-    //                     name: "Оператор Print"
-    //                 },
-    //                 {
-    //                     lessonId: 124,
-    //                     order: 2,
-    //                     name: "Оператор Input"
-    //                 }
-    //             ]
-    //         },
-    //     ]
-    // };
 
     const renderItems = (data) => {
         return data.modules.map(module => {
@@ -102,6 +57,7 @@ const StructureCourse = ({courseId, setLessonId}) => {
                 data != null ?
                 <>
                     <h3>{data.name}</h3>
+                    <h4>Пройден на {data.persentPassing}%</h4>
                     <List
                         sx={{ width: '100%', maxWidth: 600, bgcolor: 'background.paper' }}
                         component="nav"
@@ -117,5 +73,8 @@ const StructureCourse = ({courseId, setLessonId}) => {
         </div>
     )
 }
+
+
+
 
 export default StructureCourse;

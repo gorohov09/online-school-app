@@ -15,6 +15,14 @@
         font-size: 17px;
         color:#6a5be2;
       }
+      .isSolveAttempt {
+        .correct {
+          color: green;
+        }
+        .error {
+          color: red;
+        }
+      }
     }
 
     .text_field_block {
