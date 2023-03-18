@@ -7,12 +7,9 @@ import Spinner from '../../components/spinner/Spinner';
 import './game.scss';
 
 const Game = ({taskInform, render, setRender}) => {
-
-    console.log(taskInform.lastAnswerAttempt);
     const [answer, setAnswer] = useState(taskInform?.lastAnswerAttempt);
     const [attempt, setAttempt] = useState(null);
     const isFirstRun = useRef(true);
-    console.log(answer);
 
     useEffect(() => {
         if (isFirstRun.current) {
@@ -30,8 +27,6 @@ const Game = ({taskInform, render, setRender}) => {
             answer: answer,
         }
         const res = await courseService.makeAttempt(data, taskInform.taskId)
-
-        console.log(res);
         
         if (res.isRight)
             setAttempt(true)

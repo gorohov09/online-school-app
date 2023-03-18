@@ -1,6 +1,6 @@
 import Game from '../../components/game/Game';
 import TasksList from '../../components/tasksList/TasksList';
-import { useParams } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import CourseService from '../../services/CourseService';
 import Spinner from '../../components/spinner/Spinner';
@@ -21,7 +21,10 @@ const SolveTasksPage = () => {
 
     useEffect(() => {
         courseService.getFirstTaskByLesson(lessonId)
-            .then(data => setData(data))
+            .then(data => {
+                setData(data);
+                setTaskId(data.taskId)
+            })
             .then(setLoading(false));
     }, []);
 
@@ -35,8 +38,6 @@ const SolveTasksPage = () => {
             .then(data => setData(data))
             .then(setLoading(false));
     }, [taskId, render]);
-
-    console.log('Рендеринг главной страницы')
 
     return (
         <div className="solveTasks_wrapper">
