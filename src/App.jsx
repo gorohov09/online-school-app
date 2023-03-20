@@ -10,6 +10,7 @@ import CourseForStudentPage from "./pages/courseForStudent/CourseForStudentPage"
 import AddTaskPage from "./pages/course/addTask/AddTaskPage";
 import HomeStudentPage from "./pages/homeStudent/HomeStudentPage";
 import SolveTasksPage from "./pages/solveTasks/SolveTasksPage";
+import StudentRatingByCoursePage from "./pages/studentRatingByCourse/StudentRatingByCoursePage";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import useToken from "./hooks/useToken";
@@ -39,6 +40,7 @@ function App() {
 				<Route path="/student/" element={<HomeStudentPage setIsAuth={setIsAuth} />}/>
 				<Route path="/courseForStudent/:courseId" element={<CourseForStudentPage setIsAuth={setIsAuth} />}/>
 				<Route path="/solveTasks/:lessonId" element={<SolveTasksPage setIsAuth={setIsAuth} />}/>
+				<Route path="/studentRatingByCourse/:courseId" element={<StudentRatingByCoursePage />}></Route>
             </Routes>
     </div>
   );

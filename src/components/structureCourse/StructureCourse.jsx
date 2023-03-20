@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 import CourseService from '../../services/CourseService';
 import './structureCourse.scss';
 import { Spinner } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import StarRateIcon from '@mui/icons-material/StarRate';
 
 const StructureCourse = ({courseId, setLessonId}) => {
 
@@ -61,6 +63,10 @@ const StructureCourse = ({courseId, setLessonId}) => {
                         <div style={{ width: `${data.persentPassing}%` }} className="progress__inner"></div>
                     </div>
                     <h4>Пройден на {data.persentPassing}%</h4>
+                    <div className="link_rating">
+                        <StarRateIcon className='star'/>
+                        <Link to={`/studentRatingByCourse/${courseId}`}><h4>Посмотреть рейтинг</h4></Link>
+                    </div>
                     <List
                         sx={{ width: '100%', maxWidth: 600, bgcolor: 'background.paper' }}
                         component="nav"

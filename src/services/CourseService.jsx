@@ -174,6 +174,11 @@ class CourseService {
         const res = await this.getResource(this._apiBase + `task/${taskId}`);
         return res;
     }
+
+    getRatingStudentsByCourse = async (courseId) => {
+        const res = await this.getResource(this._apiBase + `course/ratingStudents/${courseId}`);
+        return res;
+    }
 }
 
 export default CourseService;
