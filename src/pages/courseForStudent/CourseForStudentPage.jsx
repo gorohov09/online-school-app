@@ -43,7 +43,7 @@ const CourseForStudentPage = ({setIsAuth}) => {
 
     return (
         <>
-            <Header/>
+            <Header setIsAuth={setIsAuth}/>
             <div className="wrapper_course">
                 <StructureCourse courseId={courseId} setLessonId={setLessonId}/>
                 <div className="main_course">

@@ -9,7 +9,7 @@ const StudentRatingByCoursePage = ({setIsAuth}) => {
 
     return (
         <>
-            <Header/>
+            <Header setIsAuth={setIsAuth}/>
             <div className="wrapper_student_rating_course">
                 <h1>Рейтинг студентов курса</h1>
                 <div className="student_rating_course">

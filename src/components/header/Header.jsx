@@ -1,10 +1,19 @@
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import "./header.scss"
 
-const Header = () => {
+const Header = ({setIsAuth}) => {
+
+    const navigate = useNavigate();
+
+    const handleAuth = () => {
+        sessionStorage.clear();
+        setIsAuth(false);
+        navigate("/login");
+    }
+
     return (
         <div className="header">
             <div className="wrapper">
@@ -18,7 +27,7 @@ const Header = () => {
                         <span>Мой аккаунт</span>
                     </div>
 
-                    <div className="item">
+                    <div onClick={handleAuth} className="item">
                         <LogoutIcon className='icon'/>
                         <span>Выйти</span>
                     </div>

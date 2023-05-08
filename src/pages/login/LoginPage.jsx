@@ -65,8 +65,7 @@ const LoginPage = ({setToken, setIsAuth}) => {
 					</div>
     			</form>
 			</div>
-		</div>
-        
+		</div>  
     )
 }
 

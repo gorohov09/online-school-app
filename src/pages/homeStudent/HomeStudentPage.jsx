@@ -8,7 +8,7 @@ import "./homeStudentPage.scss";
 const HomePage = ({setIsAuth}) => {
     return (
         <>
-            <Header/>
+            <Header setIsAuth={setIsAuth}/>
             <div className="wrapper_home">
                 <section className="all_courses">
                     <h2 className="title_courses">Популярные курсы</h2>
