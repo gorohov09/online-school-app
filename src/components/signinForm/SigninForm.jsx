@@ -1,4 +1,9 @@
+import Button from '@mui/material/Button';
+
 import './signinForm.scss';
+
+import { ThemeProvider  } from '@mui/material/styles';
+import theme from '../muiTheme.jsx';
 
 const SigninForm = () => {
     return(
@@ -29,7 +34,9 @@ const SigninForm = () => {
                     </label>
                 </div>
                 <div className="button input">
-                    <button type="submit">Регистрация</button>
+                    <ThemeProvider theme={theme}>
+                        <Button variant="contained" size="medium">Регистрация</Button>
+                    </ThemeProvider>
                 </div>
             </form>
         </div>

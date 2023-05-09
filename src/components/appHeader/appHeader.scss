@@ -1,0 +1,13 @@
+.app_header{
+    display:flex;
+    align-items:center;
+    height: 50px;
+    font-family: 'Nunito';
+    background: linear-gradient(#a890fd ,#6439ff);
+    color: #ffffff;
+    font-size: 1.5em;
+    font-weight: 400;
+    span{
+        margin: 0 20px;
+    }
+}

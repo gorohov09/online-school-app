@@ -12,6 +12,7 @@ import HomeStudentPage from "./pages/homeStudent/HomeStudentPage";
 import SolveTasksPage from "./pages/solveTasks/SolveTasksPage";
 import StudentRatingByCoursePage from "./pages/studentRatingByCourse/StudentRatingByCoursePage";
 import AuthForm from "./components/authForm/AuthForm";
+import AppHeader from "./components/appHeader/AppHeader";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import useToken from "./hooks/useToken";
@@ -27,6 +28,7 @@ function App() {
 
   	return (
     <div className="App">
+		<AppHeader/>
 		<AuthForm/>
             {/* <Routes>
                 <Route path="/" element={<HomePage setIsAuth={setIsAuth}/>} />
