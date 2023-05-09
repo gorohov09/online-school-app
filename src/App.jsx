@@ -11,22 +11,24 @@ import AddTaskPage from "./pages/course/addTask/AddTaskPage";
 import HomeStudentPage from "./pages/homeStudent/HomeStudentPage";
 import SolveTasksPage from "./pages/solveTasks/SolveTasksPage";
 import StudentRatingByCoursePage from "./pages/studentRatingByCourse/StudentRatingByCoursePage";
+import AuthForm from "./components/authForm/AuthForm";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import useToken from "./hooks/useToken";
 
 function App() {
-	const { token, setToken } = useToken();
-	const [isAuth, setIsAuth] = useState(false);
+	// const { token, setToken } = useToken();
+	// const [isAuth, setIsAuth] = useState(false);
 
-	if(!token && !isAuth) {
-		console.log('Токена нет')
-		return <LoginPage setToken={setToken} setIsAuth={setIsAuth}/>
-	}
+	// if(!token && !isAuth) {
+	// 	console.log('Токена нет')
+	// 	return <LoginPage setToken={setToken} setIsAuth={setIsAuth}/>
+	// }
 
   	return (
     <div className="App">
-            <Routes>
+		<AuthForm/>
+            {/* <Routes>
                 <Route path="/" element={<HomePage setIsAuth={setIsAuth}/>} />
 				<Route path="/courses" element={<CoursesPage setIsAuth={setIsAuth}/>} />
 				<Route path="/courses/:courseId" element={<CourseSinglePage setIsAuth={setIsAuth}/>} />
@@ -41,7 +43,7 @@ function App() {
 				<Route path="/courseForStudent/:courseId" element={<CourseForStudentPage setIsAuth={setIsAuth} />}/>
 				<Route path="/solveTasks/:lessonId" element={<SolveTasksPage setIsAuth={setIsAuth} />}/>
 				<Route path="/studentRatingByCourse/:courseId" element={<StudentRatingByCoursePage />}></Route>
-            </Routes>
+            </Routes> */}
     </div>
   );
 }
