@@ -11,7 +11,6 @@ import HomeStudentPage from "./pages/homeStudent/HomeStudentPage";
 import SolveTasksPage from "./pages/solveTasks/SolveTasksPage";
 import StudentRatingByCoursePage from "./pages/studentRatingByCourse/StudentRatingByCoursePage";
 import AuthForm from "./components/authForm/AuthForm";
-import AppHeader from "./components/appHeader/AppHeader";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import useToken from "./hooks/useToken";
@@ -24,7 +23,6 @@ function App() {
 		console.log('Токена нет')
 		return (
 			<>
-				<AppHeader/>
 				<AuthForm setToken={setToken} setIsAuth={setIsAuth}/>
 			</>
 		)	

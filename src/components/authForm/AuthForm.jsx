@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import LoginForm from '../loginForm/LoginForm';
 import SigninForm from '../signinForm/SigninForm';
-
+import AppHeader from '../appHeader/AppHeader';
 
 import { ThemeProvider  } from '@mui/material/styles';
 import theme from '../muiTheme.jsx';
@@ -15,24 +15,28 @@ import './authForm.scss';
 
 const AuthForm = ({setToken, setIsAuth}) => {
 
-    const [isLogin, setIsLogin] = useState(true);
+    const [isLoginForm, setIsLoginForm] = useState(true);
 
     return (
+        <>
+        <AppHeader/>
         <div className="auth_form__container">
+        
             <div className="auth_form__form">
                 <div className="change_form">
                     <ThemeProvider theme={theme}>
                         <ButtonGroup variant="contained" size="large" aria-label="outlined button group">
-                            <Button onClick={() => setIsLogin(true)}>Log-in</Button>
-                            <Button onClick={() => setIsLogin(false)}>Sign-in</Button>
+                            <Button disabled={isLoginForm} onClick={() => setIsLoginForm(true)}>Log-in</Button>
+                            <Button disabled={!isLoginForm} onClick={() => setIsLoginForm(false)}>Sign-in</Button>
                         </ButtonGroup>
                     </ThemeProvider>
                 </div>
                 
-                {isLogin ? <LoginForm setToken={setToken} setIsAuth={setIsAuth}/> : <SigninForm setToken={setToken}/>}
+                {isLoginForm ? <LoginForm setToken={setToken} setIsAuth={setIsAuth}/> : <SigninForm setToken={setToken}/>}
                 
             </div>
         </div>
+        </>
     )
 } 
 

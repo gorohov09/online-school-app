@@ -1,12 +1,13 @@
 .app_header{
     display:flex;
     align-items:center;
-    height: 50px;
+    height: 75px;
     font-family: 'Nunito';
-    background: linear-gradient(#a890fd ,#6439ff);
+    background: linear-gradient(150deg, #8c6cff, #d8ceff, #a890fd);
     color: #ffffff;
-    font-size: 1.5em;
-    font-weight: 400;
+    font-size: 2em;
+    font-weight: 600;
+    z-index: 1;
     span{
         margin: 0 20px;
     }
