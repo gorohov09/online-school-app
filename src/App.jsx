@@ -1,5 +1,4 @@
 import HomePage from "./pages/home/HomePage";
-import LoginPage from "./pages/login/LoginPage";
 import CoursesPage from "./pages/course/CoursesPage";
 import AddCoursePage from "./pages/course/addCourse/AddCoursePage";
 import AddLessonPage from "./pages/course/addLesson/AddLessonPage";

@@ -1,5 +1,8 @@
 import Button from '@mui/material/Button';
 
+import * as React from 'react';
+
+
 import {useState} from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,6 +10,8 @@ import './signinForm.scss';
 
 import { ThemeProvider  } from '@mui/material/styles';
 import theme from '../muiTheme.jsx';
+
+import BasicModal from '../modal/Modal';
 
 async function registerUser(credentials) {
 	return fetch('http://localhost:5259/api/auth/register', {
@@ -20,16 +25,16 @@ async function registerUser(credentials) {
 
 const SigninForm = ({setToken}) => {
 
-    const navigate = useNavigate();
-
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [itsOk, setItsOk] = useState(false);
+    const [isRequest, setIsRequest] = useState(false);
 
     const handleSubmit = async e => {
 		e.preventDefault();
+        setIsRequest(true);
 		const data = await registerUser({
             firstName,
             lastName,
@@ -45,20 +50,10 @@ const SigninForm = ({setToken}) => {
 		else{
 			setToken(data.token);
             setItsOk(true);
-			// setIsAuth(true);
-			// if (data.typeUser === 'teacher')
-			// 	navigate("/");
-			// else
-			// 	navigate("/student")
 		}
+        setIsRequest(false);
 		
 	}
-
-    const auth = (
-        <div class="auth">
-            <span >Регистрация прошла успешно.</span>
-        </div>
-    )
 
     return(
         <div className="form signin_form">
@@ -87,13 +82,16 @@ const SigninForm = ({setToken}) => {
                         <input type="password" onChange={e => setPassword(e.target.value)}/>
                     </label>
                 </div>
-                <div className="button input">
+                <div className="button input"
+                disabled={isRequest}>
                     <ThemeProvider theme={theme}>
                         <Button variant="contained" size="medium" type="submit">Регистрация</Button>
                     </ThemeProvider>
                     
                 </div>
-                {itsOk ?  auth : null}
+                <BasicModal isOpen={itsOk} 
+                header={'Регистрация прошла успешно.'} 
+                text={'Авторизуйтесь для начала обучения, пожалуйста.'}/>
                 
             </form>
         </div>

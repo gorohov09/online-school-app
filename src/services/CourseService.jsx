@@ -1,84 +1,121 @@
-class CourseService {
-    _apiBase = 'http://localhost:5259/api/';
+import {useHttp} from '../hooks/http.hook';
 
-    getToken = () => {
+const CourseService = () => {
+
+    const {request, error, clearError} = useHttp();
+    const _apiBase = 'http://localhost:5259/api/';
+
+    const getToken = () => {
         const tokenString = sessionStorage.getItem('token');
         return JSON.parse(tokenString);
     }
 
-    getResource = async (url) => {
-        let res = await fetch(url, {
-            metthod: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + this.getToken()
-            }
-        });
+    const loginUser = async(credentials) => {
+        const url = `${_apiBase}auth/login`
+        return request(url, 'POST', JSON.stringify(credentials), {'Content-Type': 'application/json'});
+    }
+
+    const registerUser = async(credentials) => {
+        const url = `${_apiBase}auth/register`
+        return request(url, 'POST', JSON.stringify(credentials), {'Content-Type': 'application/json'});
+    }
+
+    // const getResource = async (url) => {
+    //     let res = await fetch(url, {
+    //         metthod: 'GET',
+    //         headers: {
+    //             'Authorization': 'Bearer ' + this.getToken()
+    //         }
+    //     });
     
-        if (!res.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-        }
+    //     if (!res.ok) {
+    //         throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+    //     }
     
-        return await res.json();
+    //     return await res.json();
+    // }
+
+    const getResource = async(url) => {
+        return request(url, 'GET', null, {'Authorization': 'Bearer ' + this.getToken()})
     }
 
-    saveCourse = async (data) => {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + this.getToken()
-            },
-            body: JSON.stringify(data)
-        };
+    // const saveCourse = async (data) => {
+    //     const requestOptions = {method: 'POST',
+    //         headers: {'Content-Type': 'application/json',
+    //             'Authorization': 'Bearer ' + this.getToken()},
+    //         body: JSON.stringify(data)
+    //     };
 
-        let res = await fetch(this._apiBase + 'course/create', requestOptions);
+    //     let res = await fetch(this._apiBase + 'course/create', requestOptions);
 
-        if (!res.ok) {
-            throw new Error(`status: ${res.status}`);
-        }
+    //     if (!res.ok) {
+    //         throw new Error(`status: ${res.status}`);
+    //     }
         
-        return await res.json();
+    //     return await res.json();
+    // }
+
+    const saveCourse = async(data) => {
+        const url = `${_apiBase}course/create`;
+        return request(url, 'POST', JSON.stringify(data), {'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + getToken()})
     }
 
-    saveModule = async (data, courseId) => {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + this.getToken()
-            },
-            body: JSON.stringify(data)
-        };
+    // const saveModule = async (data, courseId) => {
+    //     const requestOptions = {
+    //         method: 'POST',
+    //         headers: { 
+    //             'Content-Type': 'application/json',
+    //             'Authorization': 'Bearer ' + this.getToken()
+    //         },
+    //         body: JSON.stringify(data)
+    //     };
 
-        let res = await fetch(this._apiBase + `course/${courseId}/addModule`, requestOptions);
+    //     let res = await fetch(this._apiBase + `course/${courseId}/addModule`, requestOptions);
 
-        if (!res.ok) {
-            throw new Error(`status: ${res.status}`);
-        }
+    //     if (!res.ok) {
+    //         throw new Error(`status: ${res.status}`);
+    //     }
         
-        return await res.json();
+    //     return await res.json();
+    // }
+
+    const saveModule = async (data, courseId) => {
+        const url = `${_apiBase}course/${courseId}/addModule`;
+        return request(url, 'POST', JSON.stringify(data), { 
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getToken()
+        })
     }
 
-    saveLesson = async (data, moduleId) => {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + this.getToken()
-            },
-            body: JSON.stringify(data)
-        };
+    // const saveLesson = async (data, moduleId) => {
+    //     const requestOptions = {
+    //         method: 'POST',
+    //         headers: { 
+    //             'Content-Type': 'application/json',
+    //             'Authorization': 'Bearer ' + this.getToken()
+    //         },
+    //         body: JSON.stringify(data)
+    //     };
 
-        let res = await fetch(this._apiBase + `course/module/${moduleId}/addLesson`, requestOptions);
+    //     let res = await fetch(this._apiBase + `course/module/${moduleId}/addLesson`, requestOptions);
 
-        if (!res.ok) {
-            throw new Error(`status: ${res.status}`);
-        }
+    //     if (!res.ok) {
+    //         throw new Error(`status: ${res.status}`);
+    //     }
         
-        return await res.json();
+    //     return await res.json();
+    // }
+
+    const saveLesson = async (data, moduleId) => {
+        const url = `${_apiBase}course/module/${moduleId}/addLesson`;
+        return request(url, 'POST', JSON.stringify(data), { 
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getToken()
+        })
     }
 
-    saveTask = async (data, lessonId) => {
+    const saveTask = async (data, lessonId) => {
         const requestOptions = {
             method: 'POST',
             headers: { 
@@ -97,7 +134,7 @@ class CourseService {
         return await res.json();
     }
 
-    enrollCourse = async (courseId) => {
+    const enrollCourse = async (courseId) => {
         const requestOptions = {
             method: 'POST',
             headers: { 
@@ -115,7 +152,7 @@ class CourseService {
         return await res.json();
     }
 
-    makeAttempt = async (data, taskId) => {
+    const makeAttempt = async (data, taskId) => {
         const requestOptions = {
             method: 'POST',
             headers: { 
@@ -134,51 +171,53 @@ class CourseService {
         return await res.json();
     }
 
-    getCourseById = async (id) => {
+    const getCourseById = async (id) => {
         const res = await this.getResource(this._apiBase + `course/${id}`);
         console.log(res);
         return res;
     }
 
-    getLessonById = async (id) => {
+    const getLessonById = async (id) => {
         const res = await this.getResource(this._apiBase + `lesson/${id}`);
         return res;
     }
 
-    getTeacherCourses = async () => {
+    const getTeacherCourses = async () => {
         const res = await this.getResource(this._apiBase + `course/teacherCourses`);
         return res;
     }
 
-    getFirstLessonByCourse = async (courseId) => {
+    const getFirstLessonByCourse = async (courseId) => {
         const res = await this.getResource(this._apiBase + `lesson/firstLesson/${courseId}`);
         return res;
     }
 
-    getPopularCourses = async () => {
+    const getPopularCourses = async () => {
         const res = await this.getResource(this._apiBase + `course/popularCourses/`);
         return res;
     }
 
-    getTasksByLesson = async (lessonId) => {
+    const getTasksByLesson = async (lessonId) => {
         const res = await this.getResource(this._apiBase + `student/${lessonId}/tasks`);
         return res;
     }
 
-    getFirstTaskByLesson = async (lessonId) => {
+    const getFirstTaskByLesson = async (lessonId) => {
         const res = await this.getResource(this._apiBase + `task/firstLessonTsk/${lessonId}`);
         return res;
     }
 
-    getTaskById = async (taskId) => {
+    const getTaskById = async (taskId) => {
         const res = await this.getResource(this._apiBase + `task/${taskId}`);
         return res;
     }
 
-    getRatingStudentsByCourse = async (courseId) => {
+    const getRatingStudentsByCourse = async (courseId) => {
         const res = await this.getResource(this._apiBase + `course/ratingStudents/${courseId}`);
         return res;
     }
+
+    return {error, clearError, getToken, loginUser}
 }
 
 export default CourseService;
