@@ -1,6 +1,8 @@
+import {useState} from "react";
+import { useNavigate } from "react-router-dom";
+
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import {useState} from 'react';
 import LoginForm from '../loginForm/LoginForm';
 import SigninForm from '../signinForm/SigninForm';
 
@@ -10,7 +12,8 @@ import theme from '../muiTheme.jsx';
 import './authForm.scss';
 
 
-const AuthForm = () => {
+
+const AuthForm = ({setToken, setIsAuth}) => {
 
     const [isLogin, setIsLogin] = useState(true);
 
@@ -26,7 +29,7 @@ const AuthForm = () => {
                     </ThemeProvider>
                 </div>
                 
-                {isLogin ? <LoginForm/> : <SigninForm/>}
+                {isLogin ? <LoginForm setToken={setToken} setIsAuth={setIsAuth}/> : <SigninForm setToken={setToken} setIsAuth={setIsAuth}/>}
                 
             </div>
         </div>

@@ -2,7 +2,7 @@ import './appHeader.scss';
 
 const AppHeader = () => {
     return (
-        <div class="app_header">
+        <div className="app_header">
             <span>ПО ШАГАМ</span>
         </div>
     )
