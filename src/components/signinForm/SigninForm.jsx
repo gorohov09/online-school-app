@@ -1,10 +1,9 @@
 import Button from '@mui/material/Button';
 
 import * as React from 'react';
-
+import useCourseService from '../../services/CourseService';
 
 import {useState} from "react";
-import { useNavigate } from "react-router-dom";
 
 import './signinForm.scss';
 
@@ -13,17 +12,8 @@ import theme from '../muiTheme.jsx';
 
 import BasicModal from '../modal/Modal';
 
-async function registerUser(credentials) {
-	return fetch('http://localhost:5259/api/auth/register', {
-	  method: 'POST',
-	  headers: {
-		'Content-Type': 'application/json'
-	  },
-	  body: JSON.stringify(credentials)
-	}).then(data => data.json())
-}
-
 const SigninForm = ({setToken}) => {
+    const {registerUser} = useCourseService();
 
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();

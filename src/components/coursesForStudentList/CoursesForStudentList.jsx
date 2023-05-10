@@ -1,5 +1,5 @@
 import CourseItem from "../courseItem/CourseItem";
-import CourseService from "../../services/CourseService";
+import useCourseService from "../../services/CourseService";
 import Spinner from "../spinner/Spinner";
 
 import { useState, useEffect } from "react";
@@ -11,10 +11,10 @@ const CoursesForStudentList = () => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const courseService = new CourseService();
+    const {getPopularCourses} = useCourseService();
 
     useEffect(() => {
-        courseService.getPopularCourses()
+        getPopularCourses()
             .then(data => setData(data))
             .then(setLoading(false));
     }, []);

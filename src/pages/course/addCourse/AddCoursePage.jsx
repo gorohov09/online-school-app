@@ -4,7 +4,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import CourseService from "../../../services/CourseService";
+import useCourseService from "../../../services/CourseService";
 import Spinner from "../../../components/spinner/Spinner";
 
 import { useNavigate } from "react-router-dom";
@@ -17,9 +17,9 @@ const AddCoursePage = ({setIsAuth}) => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const courseService = new CourseService();
+    const {saveCourse} = useCourseService();
 
-    const saveCourse = async () => {
+    const saveCourseL = async () => {
         const title = document.querySelector('#title');
         const description = document.querySelector('#description')
 
@@ -31,7 +31,7 @@ const AddCoursePage = ({setIsAuth}) => {
             description: description.value
         }
 
-        const res = await courseService.saveCourse(data)
+        const res = await saveCourse(data)
             .then(setLoading(loading => true))
         
         if (res)
@@ -71,7 +71,7 @@ const AddCoursePage = ({setIsAuth}) => {
                                 <TextField fullWidth label="Описание курса" id="description" />
                             </Box>
 
-                            <Button onClick={saveCourse} className="save">
+                            <Button onClick={saveCourseL} className="save">
                                 <span>Сохранить курс</span>
                             </Button>
                         </>

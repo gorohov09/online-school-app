@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import CourseService from '../../services/CourseService';
+import useCourseService from '../../services/CourseService';
 import "./courseItem.scss";
 import { Spinner } from 'react-bootstrap';
 
@@ -10,14 +10,14 @@ const CourseItem = ({courseId, name, description, countStudents, countTasks, isE
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const courseService = new CourseService();
+    const {enrollCourse}= useCourseService();
 
     const onHandleToCourse = () => {
         navigate(`/courseForStudent/${courseId}`)
     }
 
     const onHandleEnroll = async () => {
-        const res = await courseService.enrollCourse(courseId)
+        const res = await enrollCourse(courseId)
             .then(setLoading(loading => true));
 
         if (res.isSuccess)

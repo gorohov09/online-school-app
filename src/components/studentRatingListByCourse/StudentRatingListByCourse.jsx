@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import CourseService from '../../services/CourseService';
+import useCourseService from '../../services/CourseService';
 import Spinner from '../spinner/Spinner';
 import StarRateIcon from '@mui/icons-material/StarRate';
 
@@ -46,10 +46,10 @@ const StudentRatingListByCourse = ({courseId}) => {
 	const [data, setData] = useState(null);
   	const [loading, setLoading] = useState(true);
 
-  	const courseService = new CourseService();
+  	const {getRatingStudentsByCourse} = useCourseService();
 
 	useEffect(() => {
-		courseService.getRatingStudentsByCourse(courseId)
+		getRatingStudentsByCourse(courseId)
 				.then(data => setData(data))
 				.then(setLoading(false));
 	}, []);

@@ -2,7 +2,7 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import { Fragment } from "react";
 import { useState, useEffect } from 'react';
-import CourseService from '../../services/CourseService';
+import useCourseService from '../../services/CourseService';
 import './structureCourse.scss';
 import { Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -13,10 +13,10 @@ const StructureCourse = ({courseId, setLessonId}) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const courseService = new CourseService();
+    const {getCourseById} = useCourseService();
 
     useEffect(() => {
-        courseService.getCourseById(courseId)
+        getCourseById(courseId)
             .then(data => setData(data))
             .then(setLoading(false));
     }, []);

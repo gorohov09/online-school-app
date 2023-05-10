@@ -2,24 +2,14 @@ import Button from '@mui/material/Button';
 
 import {useState} from "react";
 import { useNavigate } from "react-router-dom";
-import CourseService from '../../services/CourseService.jsx';
+import useCourseService from '../../services/CourseService.jsx';
 import { ThemeProvider  } from '@mui/material/styles';
 import theme from '../muiTheme.jsx';
 
 import './loginForm.scss'
 
-// async function loginUser(credentials) {
-// 	return fetch('http://localhost:5259/api/auth/login', {
-// 	  method: 'POST',
-// 	  headers: {
-// 		'Content-Type': 'application/json'
-// 	  },
-// 	  body: JSON.stringify(credentials)
-// 	}).then(data => data.json())
-// }
-
 const LoginForm = ({setToken, setIsAuth}) => {
-    const {loginUser} = CourseService();
+    const {loginUser} = useCourseService();
     const navigate = useNavigate();
 
     const [email, setEmail] = useState();
