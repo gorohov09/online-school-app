@@ -2,7 +2,7 @@ import Header from "../../components/header/Header";
 import StructureCourse from "../../components/structureCourse/StructureCourse";
 import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
-import CourseService from "../../services/CourseService";
+import useCourseService from "../../services/CourseService";
 import Spinner from "../../components/spinner/Spinner";
 import Button from '@mui/material/Button';
 
@@ -15,13 +15,13 @@ const CourseForStudentPage = ({setIsAuth}) => {
     const [loading, setLoading] = useState(true);
     const isInitialMount = useRef(true);
 
-    const courseService = new CourseService();
+    const {getLessonById, getFirstLessonByCourse} = useCourseService();
 
     useEffect(() => {
         if (isInitialMount.current) {
             isInitialMount.current = false;
         } else {
-            courseService.getLessonById(selectLessonId)
+            getLessonById(selectLessonId)
             .then(data => setDataLesson(data))
             .then(setLoading(false));
         }
@@ -29,7 +29,7 @@ const CourseForStudentPage = ({setIsAuth}) => {
     }, [selectLessonId]);
 
     useEffect(() => {
-        courseService.getFirstLessonByCourse(courseId)
+        getFirstLessonByCourse(courseId)
             .then(data => setDataLesson(data))
             .then(setLoading(false));
     }, []);

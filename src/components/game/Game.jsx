@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import CourseService from '../../services/CourseService';
+import useCourseService from '../../services/CourseService';
 import { TextField, Button } from '@mui/material';
 import Spinner from '../../components/spinner/Spinner';
 
@@ -20,13 +20,13 @@ const Game = ({taskInform, render, setRender}) => {
         setAnswer(taskInform?.lastAnswerAttempt == null ? '' : taskInform?.lastAnswerAttempt);
     }, [taskInform])
 
-    const courseService = new CourseService();
+    const {makeAttempt} = useCourseService();
 
     const onMakeAttempt = async () => {
         const data = {
             answer: answer,
         }
-        const res = await courseService.makeAttempt(data, taskInform.taskId)
+        const res = await makeAttempt(data, taskInform.taskId)
         
         if (res.isRight)
             setAttempt(true)

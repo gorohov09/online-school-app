@@ -2,7 +2,7 @@ import Game from '../../components/game/Game';
 import TasksList from '../../components/tasksList/TasksList';
 import { useParams} from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
-import CourseService from '../../services/CourseService';
+import useCourseService from '../../services/CourseService';
 import Spinner from '../../components/spinner/Spinner';
 
 import './solveTaskPage.scss';
@@ -17,10 +17,10 @@ const SolveTasksPage = () => {
     const [render, setRender] = useState(false);
     const isFirstRun = useRef(true);
 
-    const courseService = new CourseService();
+    const {getFirstTaskByLesson, getTaskById} = useCourseService();
 
     useEffect(() => {
-        courseService.getFirstTaskByLesson(lessonId)
+        getFirstTaskByLesson(lessonId)
             .then(data => {
                 setData(data);
                 setTaskId(data.taskId)
@@ -34,7 +34,7 @@ const SolveTasksPage = () => {
             return;
         }
 
-        courseService.getTaskById(taskId)
+        getTaskById(taskId)
             .then(data => setData(data))
             .then(setLoading(false));
     }, [taskId, render]);

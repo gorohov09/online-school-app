@@ -5,7 +5,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Button from '@mui/material/Button';
 import {useParams, Link} from 'react-router-dom';
 import { useState, useEffect } from "react";
-import CourseService from "../../../services/CourseService";
+import useCourseService from "../../../services/CourseService";
 import Spinner from "../../../components/spinner/Spinner";
 import { Fragment } from "react";
 import TaskDetails from "../../../components/taskDetails/TaskDetails";
@@ -19,7 +19,7 @@ const LessonSinglePage = () => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const courseService = new CourseService();
+    const courseService = new useCourseService();
 
     useEffect(() => {
         courseService.getLessonById(lessonId)

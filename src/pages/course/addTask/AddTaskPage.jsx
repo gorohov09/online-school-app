@@ -11,7 +11,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import CourseService from "../../../services/CourseService";
+import useCourseService from "../../../services/CourseService";
 import Spinner from "../../../components/spinner/Spinner";
 
 
@@ -25,7 +25,7 @@ const AddTaskPage = ({setIsAuth}) => {
     const [value, setValue] = useState('1');
     const navigate = useNavigate();
 
-    const courseService = new CourseService();
+    const {saveTask} = useCourseService();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -35,7 +35,7 @@ const AddTaskPage = ({setIsAuth}) => {
             setType("oneAnswer");
     };
 
-    const saveTask = async () => {
+    const saveTaskL = async () => {
         const name = document.querySelector('#name');
         const description = document.querySelector('#description');
         const question = document.querySelector('#question');
@@ -56,7 +56,7 @@ const AddTaskPage = ({setIsAuth}) => {
         console.log(data);
         console.log(lessonId);
 
-        const res = await courseService.saveTask(data, lessonId)
+        const res = await saveTask(data, lessonId)
             .then(setLoading(loading => true))
         
         if (res)
@@ -156,7 +156,7 @@ const AddTaskPage = ({setIsAuth}) => {
                             </div>
                             
 
-                            <Button onClick={saveTask} className="save">
+                            <Button onClick={saveTaskL} className="save">
                                 <span>Сохранить</span>
                             </Button>
                         </>

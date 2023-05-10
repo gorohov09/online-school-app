@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import CourseService from '../../services/CourseService';
+import useCourseService from '../../services/CourseService';
 import Spinner from '../spinner/Spinner';
 
 
@@ -45,10 +45,10 @@ export default function CustomizedTables() {
 	const [data, setData] = useState(null);
   	const [loading, setLoading] = useState(true);
 
-  	const courseService = new CourseService();
+  	const {getTeacherCourses} = useCourseService();
 
 	useEffect(() => {
-		courseService.getTeacherCourses()
+		getTeacherCourses()
 				.then(data => setData(data))
 				.then(setLoading(false));
 	}, []);
