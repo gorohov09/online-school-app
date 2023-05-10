@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import useCourseService from '../../services/CourseService.jsx';
 import { ThemeProvider  } from '@mui/material/styles';
@@ -9,7 +9,7 @@ import theme from '../muiTheme.jsx';
 import './loginForm.scss'
 
 const LoginForm = ({setToken, setIsAuth}) => {
-    const {loginUser} = useCourseService();
+    const {loginUser, error, clearError} = useCourseService();
     const navigate = useNavigate();
 
     const [email, setEmail] = useState();
@@ -17,11 +17,12 @@ const LoginForm = ({setToken, setIsAuth}) => {
 
     const handleSubmit = async e => {
 		e.preventDefault();
+        
 		const data = await loginUser({
 			email: email,
 		  	password: password
 		});
-
+        console.log(data);
 		if (data?.status === 500){
 			console.log('Очистка формы')
 			e.target.reset(); 
@@ -36,6 +37,20 @@ const LoginForm = ({setToken, setIsAuth}) => {
 		}
 		
 	}
+
+    useEffect(() => {
+        clearError();
+    }, []);
+
+    let errorMessage = (
+        <div>
+            <span style={{'color': '#ffffff', 'font-size': '1em'}}>
+                Произошла ошибка
+            </span>
+        </div>
+    )
+    errorMessage = error ? errorMessage : null;
+    console.log(error);
 
     return(
         <div className="form login_form">
@@ -57,6 +72,7 @@ const LoginForm = ({setToken, setIsAuth}) => {
                         <Button variant="contained" size="medium" type="submit">Авторизация</Button>
                     </ThemeProvider>
                 </div>     
+                {errorMessage}
             </form>
         </div>
     )
