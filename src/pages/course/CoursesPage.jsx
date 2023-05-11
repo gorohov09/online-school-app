@@ -9,27 +9,32 @@ import './coursesPage.scss';
 
 const CoursesPage = ({setIsAuth}) => {
     return (
+        <>
+        <Navbar setIsAuth={setIsAuth}/>
         <div className="course">
-            <Sidebar />
-            <div className="courseContainer">
-                <Navbar setIsAuth={setIsAuth}/>
-                <div className="courses">
-                    <div className="operation">
-                        <Stack direction="row" spacing={2}>
-                            <Button>
-                                <Link to="/addCourse"><span className="add">Добавить курс</span></Link>
-                            </Button>
-                            <Button color="secondary"><span>Отсортировать по рейтингу</span></Button>
-                            <Button color="secondary"><span>Отсортировать по дате создания</span></Button>
-                        </Stack>
-                    </div>
-                    <CourseList />
-                    <div className="load">
-                        <Button color="secondary"><span>Загрузить</span></Button>
+            
+            <div className="left_side">
+                <Sidebar />
+            </div>
+            <div className="right_side">
+                <div className="courseContainer">
+                    
+                    <div className="courses">
+                        <div className="operation">
+                            <Stack direction="row" spacing={2}>
+                                <Button>
+                                    <Link to="/addCourse"><span className="add">Добавить курс</span></Link>
+                                </Button>
+                                <Button color="secondary"><span>Отсортировать по рейтингу</span></Button>
+                                <Button color="secondary"><span>Отсортировать по дате создания</span></Button>
+                            </Stack>
+                        </div>
+                        <CourseList />
                     </div>
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

@@ -17,7 +17,7 @@ import './courseList.scss';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#6439ff",
+    background: "linear-gradient( #6439ff, #a890fd);",
     color: "white",
     fontSize: 20,
     fontFamily: 'Nunito',
@@ -57,9 +57,11 @@ export default function CustomizedTables() {
 		return data.courses.map((course) => (
 			<StyledTableRow key={course.name}>
 				<StyledTableCell component="th" scope="row">
-					<Link className='link' to = {`${course.courseId}`}>{course.name}</Link>
+					<Link className='link' to = {`${course.courseId}`}>{course.name.length > 25 ?
+						course.name.slice(0, 25) : course.name}</Link>
 				</StyledTableCell>
-				<StyledTableCell align="right">{course.description}</StyledTableCell>
+				<StyledTableCell align="right" style={{'textAlign':'justify'}}>{course.description.length > 100 ?
+					`${course.description.slice(0, 100)}...` : course.description}</StyledTableCell>
 				<StyledTableCell align="right">{course.countStudents}</StyledTableCell>
 				<StyledTableCell align="right">{course.countModules}</StyledTableCell>
 				<StyledTableCell align="right">{course.countLessons}</StyledTableCell>
@@ -77,7 +79,8 @@ export default function CustomizedTables() {
 
 
   	return (
-		!loading ?
+		<div className='course_list__container'>
+		{!loading ?
 		<>
 			<TableContainer component={Paper}>
       			<Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -104,7 +107,8 @@ export default function CustomizedTables() {
 		:
 		<>
 			<Spinner style={{'color':'#6439ff'}}/>
-		</>
+		</>}
 
+		</div>
   );
 }

@@ -7,16 +7,12 @@ import "./sidebar.scss"
 const Sidebar = () => {
     return (
         <div className="sidebar">
-            <div className="top">
-                <Link to="/"><span className="logo">"По Шагам"</span></Link>
-            </div>
-            <hr></hr>
             <div className="center">
                 <ul>
-                    <p className="title">ОСНОВНАЯ ИНФОМРАЦИЯ</p>
+                    <p className="title">Меню</p>
                     <li>
                         <AccountCircleIcon className='icon' />
-                        <span>Моя страница</span>
+                        <Link to="/"><span>Моя страница</span></Link>
                     </li>
                     <li>
                         <MenuBookIcon className='icon' />
