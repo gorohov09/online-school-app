@@ -11,7 +11,7 @@ import { Fragment } from "react";
 
 import './courseSinglePage.scss';
 
-const CourseSinglePage = () => {
+const CourseSinglePage = ({setIsAuth}) => {
 
     const {courseId} = useParams();
 
@@ -71,7 +71,7 @@ const CourseSinglePage = () => {
         <div className="course">
             <Sidebar />
             <div className="courseContainer">
-                <Navbar />
+                <Navbar setIsAuth={setIsAuth}/>
                 <div className="singleCourse">
                     {
                         !loading ?

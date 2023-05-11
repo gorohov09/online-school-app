@@ -20,64 +20,15 @@ const useCourseService = () => {
         return await request(url, 'POST', JSON.stringify(credentials), {'Content-Type': 'application/json'});
     }
 
-    // const getResource = async (url) => {
-    //     let res = await fetch(url, {
-    //         metthod: 'GET',
-    //         headers: {
-    //             'Authorization': 'Bearer ' + this.getToken()
-    //         }
-    //     });
-    
-    //     if (!res.ok) {
-    //         throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-    //      
-    //     return await res.json();
-    // }
-
     const getResource = async(url) => {
         return await request(url, 'GET', null, {'Authorization': 'Bearer ' + getToken()});
     }
-
-    // const saveCourse = async (data) => {
-    //     const requestOptions = {method: 'POST',
-    //         headers: {'Content-Type': 'application/json',
-    //             'Authorization': 'Bearer ' + this.getToken()},
-    //         body: JSON.stringify(data)
-    //     };
-
-    //     let res = await fetch(this._apiBase + 'course/create', requestOptions);
-
-    //     if (!res.ok) {
-    //         throw new Error(`status: ${res.status}`);
-    //     }
-        
-    //     return await res.json();
-    // }
 
     const saveCourse = async(data) => {
         const url = `${_apiBase}course/create`;
         return await request(url, 'POST', JSON.stringify(data), {'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + getToken()})
     }
-
-    // const saveModule = async (data, courseId) => {
-    //     const requestOptions = {
-    //         method: 'POST',
-    //         headers: { 
-    //             'Content-Type': 'application/json',
-    //             'Authorization': 'Bearer ' + this.getToken()
-    //         },
-    //         body: JSON.stringify(data)
-    //     };
-
-    //     let res = await fetch(this._apiBase + `course/${courseId}/addModule`, requestOptions);
-
-    //     if (!res.ok) {
-    //         throw new Error(`status: ${res.status}`);
-    //     }
-        
-    //     return await res.json();
-    // }
 
     const saveModule = async (data, courseId) => {
         const url = `${_apiBase}course/${courseId}/addModule`;
@@ -87,25 +38,6 @@ const useCourseService = () => {
         })
     }
 
-    // const saveLesson = async (data, moduleId) => {
-    //     const requestOptions = {
-    //         method: 'POST',
-    //         headers: { 
-    //             'Content-Type': 'application/json',
-    //             'Authorization': 'Bearer ' + this.getToken()
-    //         },
-    //         body: JSON.stringify(data)
-    //     };
-
-    //     let res = await fetch(this._apiBase + `course/module/${moduleId}/addLesson`, requestOptions);
-
-    //     if (!res.ok) {
-    //         throw new Error(`status: ${res.status}`);
-    //     }
-        
-    //     return await res.json();
-    // }
-
     const saveLesson = async (data, moduleId) => {
         const url = `${_apiBase}course/module/${moduleId}/addLesson`;
         return await request(url, 'POST', JSON.stringify(data), { 
@@ -113,25 +45,6 @@ const useCourseService = () => {
             'Authorization': 'Bearer ' + getToken()
         })
     }
-
-    // const saveTask = async (data, lessonId) => {
-    //     const requestOptions = {
-    //         method: 'POST',
-    //         headers: { 
-    //             'Content-Type': 'application/json',
-    //             'Authorization': 'Bearer ' + this.getToken()
-    //         },
-    //         body: JSON.stringify(data)
-    //     };
-
-    //     let res = await fetch(this._apiBase + `course/lesson/${lessonId}/addTask`, requestOptions);
-
-    //     if (!res.ok) {
-    //         throw new Error(`status: ${res.status}`);
-    //     }
-        
-    //     return await res.json();
-    // }
 
     const saveTask = async (data, lessonId) => {
         const url = `${_apiBase}course/lesson/${lessonId}/addTask`;
@@ -141,24 +54,6 @@ const useCourseService = () => {
         })
     }
 
-    // const enrollCourse = async (courseId) => {
-    //     const requestOptions = {
-    //         method: 'POST',
-    //         headers: { 
-    //             'Content-Type': 'application/json',
-    //             'Authorization': 'Bearer ' + this.getToken()
-    //         },
-    //     };
-
-    //     let res = await fetch(this._apiBase + `course/enroll/${courseId}`, requestOptions);
-
-    //     if (!res.ok) {
-    //         throw new Error(`status: ${res.status}`);
-    //     }
-        
-    //     return await res.json();
-    // }
-
     const enrollCourse = async (courseId) => {
         const url = `${_apiBase}course/enroll/${courseId}`;
         return await request(url, 'POST', null, { 
@@ -166,25 +61,6 @@ const useCourseService = () => {
             'Authorization': 'Bearer ' + getToken()
         })
     }
-
-    // const makeAttempt = async (data, taskId) => {
-    //     const requestOptions = {
-    //         method: 'POST',
-    //         headers: { 
-    //             'Content-Type': 'application/json',
-    //             'Authorization': 'Bearer ' + this.getToken()
-    //         },
-    //         body: JSON.stringify(data)
-    //     };
-
-    //     let res = await fetch(this._apiBase + `course/task/${taskId}/makeAttempt`, requestOptions);
-
-    //     if (!res.ok) {
-    //         throw new Error(`status: ${res.status}`);
-    //     }
-        
-    //     return await res.json();
-    // }
 
     const makeAttempt = async (data, taskId) => {
         const url = `${_apiBase}course/task/${taskId}/makeAttempt`;

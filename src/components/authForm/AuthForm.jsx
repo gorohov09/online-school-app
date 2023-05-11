@@ -19,7 +19,7 @@ const AuthForm = ({setToken, setIsAuth}) => {
 
     return (
         <>
-        <AppHeader/>
+        {/* <AppHeader/> */}
         <div className="auth_form__container">
         
             <div className="auth_form__form">

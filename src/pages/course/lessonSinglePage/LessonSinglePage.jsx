@@ -12,17 +12,17 @@ import TaskDetails from "../../../components/taskDetails/TaskDetails";
 
 import './lessonSinglePage.scss';
 
-const LessonSinglePage = () => {
+const LessonSinglePage = ({setIsAuth}) => {
 
     const {lessonId} = useParams();
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const courseService = new useCourseService();
+    const {getLessonById} = useCourseService();
 
     useEffect(() => {
-        courseService.getLessonById(lessonId)
+        getLessonById(lessonId)
             .then(data => setData(data))
             .then(setLoading(false));
     }, []);
@@ -45,9 +45,9 @@ const LessonSinglePage = () => {
     
     return (
         <div className="lesson">
-            <Sidebar />
+            <Sidebar/>
             <div className="lessonContainer">
-                <Navbar />
+                <Navbar setIsAuth={setIsAuth}/>
                 <div className="singleLesson">
                     {
                         !loading ?

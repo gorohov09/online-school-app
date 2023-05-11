@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import * as React from 'react';
 import useCourseService from '../../services/CourseService';
 
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 import './signinForm.scss';
 
@@ -13,7 +13,7 @@ import theme from '../muiTheme.jsx';
 import BasicModal from '../modal/Modal';
 
 const SigninForm = ({setToken}) => {
-    const {registerUser} = useCourseService();
+    const {registerUser, error, clearError} = useCourseService();
 
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
@@ -44,6 +44,21 @@ const SigninForm = ({setToken}) => {
         setIsRequest(false);
 		
 	}
+
+    useEffect(() => {
+        clearError();
+    }, []);
+
+    let errorMessage = (
+        <div>
+            <span style={{'color': '#ffffff', 'font-size': '1em'}}>
+                Произошла ошибка
+            </span>
+        </div>
+    )
+    errorMessage = error ? errorMessage : null;
+    console.log(error);
+
 
     return(
         <div className="form signin_form">
@@ -82,7 +97,7 @@ const SigninForm = ({setToken}) => {
                 <BasicModal isOpen={itsOk} 
                 header={'Регистрация прошла успешно.'} 
                 text={'Авторизуйтесь для начала обучения, пожалуйста.'}/>
-                
+                {errorMessage}
             </form>
         </div>
     )

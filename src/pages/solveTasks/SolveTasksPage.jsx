@@ -1,4 +1,5 @@
 import Game from '../../components/game/Game';
+import Header from "../../components/header/Header";
 import TasksList from '../../components/tasksList/TasksList';
 import { useParams} from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
@@ -7,7 +8,7 @@ import Spinner from '../../components/spinner/Spinner';
 
 import './solveTaskPage.scss';
 
-const SolveTasksPage = () => {
+const SolveTasksPage = ({setIsAuth}) => {
 
     const {lessonId} = useParams();
 
@@ -40,6 +41,8 @@ const SolveTasksPage = () => {
     }, [taskId, render]);
 
     return (
+        <>
+        <Header setIsAuth={setIsAuth}/>
         <div className="solveTasks_wrapper">
             <TasksList lessonId={lessonId} setTaskId={setTaskId} render={render} taskId={taskId}/>
             {
@@ -53,6 +56,7 @@ const SolveTasksPage = () => {
                 </>
             }
         </div>
+        </>
     )
 }
 
