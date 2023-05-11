@@ -12,7 +12,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import useCourseService from "../../../services/CourseService";
-import Spinner from "../../../components/spinner/Spinner";
+import {Spinner} from "react-bootstrap";
 
 
 import './addTaskPage.scss';
@@ -162,7 +162,7 @@ const AddTaskPage = ({setIsAuth}) => {
                         </>
                         : 
                         <>
-                            <Spinner />
+                            <Spinner style={{'color':'#6439ff'}}/>
                         </>
                     }
                 </div>

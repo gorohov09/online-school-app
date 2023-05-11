@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import useCourseService from '../../services/CourseService';
-import Spinner from '../spinner/Spinner';
+import {Spinner} from 'react-bootstrap';
 import StarRateIcon from '@mui/icons-material/StarRate';
 
 
@@ -122,7 +122,7 @@ const StudentRatingListByCourse = ({courseId}) => {
 		</>
 		:
 		<>
-		  	<Spinner />
+			<Spinner style={{'color':'#6439ff'}}/>
 		</>
     );
 }

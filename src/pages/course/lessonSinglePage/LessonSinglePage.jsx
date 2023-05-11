@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import {useParams, Link} from 'react-router-dom';
 import { useState, useEffect } from "react";
 import useCourseService from "../../../services/CourseService";
-import Spinner from "../../../components/spinner/Spinner";
+import {Spinner} from "react-bootstrap";
 import { Fragment } from "react";
 import TaskDetails from "../../../components/taskDetails/TaskDetails";
 
@@ -65,7 +65,7 @@ const LessonSinglePage = ({setIsAuth}) => {
                         </>
                         :
                         <>
-                            <Spinner />
+                            <Spinner style={{'color':'#6439ff'}}/>
                         </>
                     }
                 </div>

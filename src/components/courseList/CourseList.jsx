@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import useCourseService from '../../services/CourseService';
-import Spinner from '../spinner/Spinner';
+import {Spinner} from 'react-bootstrap';
 
 
 import './courseList.scss';
@@ -103,7 +103,7 @@ export default function CustomizedTables() {
 		</>
 		:
 		<>
-		  	<Spinner />
+			<Spinner style={{'color':'#6439ff'}}/>
 		</>
 
   );

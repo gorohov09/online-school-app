@@ -50,7 +50,6 @@ const LoginForm = ({setToken, setIsAuth}) => {
         </div>
     )
     errorMessage = error ? errorMessage : null;
-    console.log(error);
 
     return(
         <div className="form login_form">

@@ -1,6 +1,6 @@
 import CourseItem from "../courseItem/CourseItem";
 import useCourseService from "../../services/CourseService";
-import Spinner from "../spinner/Spinner";
+import { Spinner } from "react-bootstrap";
 
 import { useState, useEffect } from "react";
 
@@ -10,6 +10,8 @@ const CoursesForStudentList = () => {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
+    // const [isEnrollReq, setIsEnrollReq] = useState(null);
+    const [isEnrollReq, setIsEnrollReq] = useState(false);
 
     const {getPopularCourses} = useCourseService();
 
@@ -17,11 +19,29 @@ const CoursesForStudentList = () => {
         getPopularCourses()
             .then(data => setData(data))
             .then(setLoading(false));
+        console.log('Effect');
+        
     }, []);
 
+    useEffect(() => {
+        getPopularCourses()
+            .then(data => setData(data))
+            .then(setLoading(false));
+        console.log('EffectReqSuccess');
+        setIsEnrollReq(false);
+    }, [isEnrollReq]);
+
     const renderCourses = () => {
-        return data.popularCourses.map(course => {
-            return <CourseItem courseId={course.courseId} name={course.name} description={course.description} countStudents={course.countStudents} countTasks={course.countTasks} isEnroll={course.isEnroll}/>
+        return data.
+            map(course => {
+                return <CourseItem courseId={course.courseId} 
+                name={course.name} 
+                description={course.description} 
+                countStudents={course.countStudents} 
+                countTasks={course.countTasks} 
+                isEnroll={course.isEnroll}
+                isReqSuccess={isEnrollReq}
+                setIsEnrollReq={setIsEnrollReq}/>
         })
     }
 
@@ -39,7 +59,7 @@ const CoursesForStudentList = () => {
                 </>
                 :
                 <>
-                    <Spinner />
+                    <Spinner style={{'color':'#6439ff'}}/>
                 </>
         }
         </>

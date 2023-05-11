@@ -3,7 +3,7 @@ import './tasksList.scss';
 
 import { useState, useEffect } from 'react';
 import useCourseService from '../../services/CourseService';
-import Spinner from '../spinner/Spinner';
+import {Spinner} from 'react-bootstrap';
 
 const TasksList = ({lessonId, setTaskId, render, taskId}) => {
 
@@ -48,7 +48,7 @@ const TasksList = ({lessonId, setTaskId, render, taskId}) => {
                 </>
                 :
                 <>
-                    <Spinner />
+                    <Spinner style={{'color':'#6439ff'}}/>
                 </>
             }
         </div>

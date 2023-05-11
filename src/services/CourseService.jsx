@@ -1,3 +1,4 @@
+import { ContentCutOutlined } from '@mui/icons-material';
 import {useHttp} from '../hooks/http.hook';
 
 const useCourseService = () => {
@@ -92,8 +93,14 @@ const useCourseService = () => {
     }
 
     const getPopularCourses = async () => {
+        console.log(getToken());
         const res = await getResource(_apiBase + `course/popularCourses/`);
-        return res;
+
+        const result = res.popularCourses.sort((a, b) => {
+            return b.countStudents - a.countStudents
+        });
+        
+        return result;
     }
 
     const getTasksByLesson = async (lessonId) => {

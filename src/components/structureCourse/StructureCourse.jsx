@@ -76,7 +76,7 @@ const StructureCourse = ({courseId, setLessonId}) => {
                 </>
                 :
                 <>
-                    <Spinner />
+                    <Spinner style={{'color':'#6439ff'}}/>
                 </>
             }
         </div>

@@ -4,7 +4,7 @@ import TasksList from '../../components/tasksList/TasksList';
 import { useParams} from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import useCourseService from '../../services/CourseService';
-import Spinner from '../../components/spinner/Spinner';
+import {Spinner} from 'react-bootstrap';
 
 import './solveTaskPage.scss';
 
@@ -52,7 +52,7 @@ const SolveTasksPage = ({setIsAuth}) => {
                 </>
                 :
                 <>
-                    <Spinner />
+                    <Spinner style={{'color':'#6439ff'}}/>
                 </>
             }
         </div>
