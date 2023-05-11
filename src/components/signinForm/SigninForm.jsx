@@ -57,8 +57,6 @@ const SigninForm = ({setToken}) => {
         </div>
     )
     errorMessage = error ? errorMessage : null;
-    console.log(error);
-
 
     return(
         <div className="form signin_form">

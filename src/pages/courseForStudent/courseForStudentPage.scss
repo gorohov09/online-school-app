@@ -1,5 +1,6 @@
 .wrapper_course {
     display: flex;
+    
 
     .main_course {
         flex: 8;
@@ -7,6 +8,7 @@
         flex-direction: column;
         padding: 40px;
         justify-content: center;
+        
 
         h2 {
             font-size: 52px;

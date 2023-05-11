@@ -1,11 +1,14 @@
 .wrapper_home {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    background: linear-gradient(120deg, #dcd3ff, #ffffff, #cbbdff);
+    min-height: 100vh;
 
     .all_courses {
         display: flex;
+        
         flex-direction: column;
         padding-left: 50px;
         padding-right: 50px;

@@ -1,11 +1,20 @@
+:root {
+    --primary-color: #6439ff;
+    --secondary--color: #a890fd;
+    --text-color: #ffffff;
+}
+
+
 .course_item {
+    
     margin: 30px;
     width: 450px;
     display: flex;
     flex-direction: column;
-    border: 3px solid #6439ff;
-    border-radius: 30px;
+    // border: 3px solid var(--primary-color);
+    border-radius: 15px;
     padding: 10px;
+    background: linear-gradient(#a890fd ,#6439ff);
 
     .title_course_block {
         margin-bottom: 10px;
@@ -18,7 +27,7 @@
             .title_course {
                 font-size: 26px;
                 font-weight: 700;
-                color: #6439ff;
+                color: #ffffff;
             }
         }
         
@@ -26,28 +35,31 @@
         .enrollLabel {
             font-size: 20px;
             padding: 5px;
-            border-radius: 20px;
-            font-weight: 700;
+            border-radius: 10px;
+            font-weight: 500;
             color: white;
-            background-color: green;
+            background-color: var(--secondary-color);
         }
 
         .noEnrollLabel {
             font-size: 20px;
             padding: 5px;
-            border-radius: 20px;
-            font-weight: 700;
+            border-radius: 10px;
+            font-weight: 500;
             color: white;
-            background-color: red;
+            background-color: rgb(133, 133, 133);
         }
     }
 
     .title_description_block {
         margin-bottom: 10px;
+        text-align:justify;
+        
         .title_description {
+            
             font-size: 20px;
             font-weight: 400;
-            color: #6439ff;
+            color:var(--text-color);;
         }
     }
 
@@ -61,7 +73,7 @@
             .count_students_course {
                 font-size: 17px;
                 font-weight: 500;
-                color: #6439ff;
+                color: var(--text-color);
             }
         }
 
@@ -70,7 +82,7 @@
             .count_tasks_course {
                 font-size: 17px;
                 font-weight: 500;
-                color: #6439ff;
+                color: var(--text-color);
             }
         }
 
@@ -81,9 +93,14 @@
         align-self:center;
     }
 
+    .enroll_spinner {
+        align-self:center;
+        color: var(--text-color);
+    }
+
     .enroll_course {
         font-size: 20px;
-        color: #6439ff;
+        color: var(--text-color);
         font-weight: 700;
         margin-bottom: 15px;
     }
@@ -95,7 +112,7 @@
 
     .toCourse_student {
         font-size: 20px;
-        color: #6439ff;
+        color: var(--text-color);
         font-weight: 700;
         margin-bottom: 15px;
     }

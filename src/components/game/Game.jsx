@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import useCourseService from '../../services/CourseService';
 import { TextField, Button } from '@mui/material';
-import Spinner from '../../components/spinner/Spinner';
+import {Spinner} from 'react-bootstrap';
 
 
 import './game.scss';
@@ -35,8 +35,6 @@ const Game = ({taskInform, render, setRender}) => {
 
         setRender(!render);
     }
-
-    //const classInput = attempt == null ? 'noAttempt' : (attempt ? 'success' : 'error');
 
     let task;
     if (taskInform.type === 'Свободный ответ'){

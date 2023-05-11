@@ -1,13 +1,24 @@
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import useCourseService from '../../services/CourseService';
 import "./courseItem.scss";
 import { Spinner } from 'react-bootstrap';
+import Modal from '../modal/Modal';
 
-const CourseItem = ({courseId, name, description, countStudents, countTasks, isEnroll}) => {
+const CourseItem = ({courseId, 
+    name, 
+    description, 
+    countStudents, 
+    countTasks, 
+    isEnroll,
+    setIsEnrollReq
+
+    }) => {
 
     const [loading, setLoading] = useState(false);
+    const [isReqSuccess, setIsReqSuccess] = useState(false);
+    
     const navigate = useNavigate();
 
     const {enrollCourse}= useCourseService();
@@ -17,18 +28,26 @@ const CourseItem = ({courseId, name, description, countStudents, countTasks, isE
     }
 
     const onHandleEnroll = async () => {
-        const res = await enrollCourse(courseId)
-            .then(setLoading(loading => true));
+        
+        setLoading(loading => true);
+        const res = await enrollCourse(courseId);
 
-        if (res.isSuccess)
-            navigate(`/courseForStudent/${courseId}`)
+        if (res.isSuccess){
+            setIsReqSuccess(res.isSuccess);
+            setLoading(loading => false);
+            setIsEnrollReq(true);
+        }
     }
 
+    // useEffect(()=>{
+    //     setIsReqSuccess(false);
+    // }, []);
+    
     const classLabel = isEnroll ? 'enrollLabel' : 'noEnrollLabel';
     const textLabel = isEnroll ? 'Вы записаны' : 'Вы не записаны';
 
     return (
-        !loading ? 
+        // !loading ? 
         <>
             <div className="course_item">
                 <div className="title_course_block">
@@ -40,7 +59,9 @@ const CourseItem = ({courseId, name, description, countStudents, countTasks, isE
                     </div>
                 </div>
                 <div className="title_description_block">
-                    <span className="title_description">{description}</span>
+                    <span className="title_description">{
+                    description.length > 125 ? `${description.slice(0, 125)}...` : description
+                    }</span>
                 </div>
                 <div className="course_statistic">
                     <div className="left_statistic">
@@ -59,17 +80,22 @@ const CourseItem = ({courseId, name, description, countStudents, countTasks, isE
                     </>
                     :
                     <>
-                        <Button onClick={onHandleEnroll} className="enroll">
+                    {!loading ?
+                        <Button onClick={onHandleEnroll} className="enroll" disabled={loading}>
                             <span className="enroll_course">Записаться</span>
                         </Button>
+                        :
+                        <Spinner className="enroll_spinner"/>
+                    }
                     </>
+                    
                 }
+                <Modal isOpen={isReqSuccess}
+                    header={'Вы успешно записаны на курс!'}
+                    text={'Желаем Вам пройти путь к освоению новых технологий без больших препятствий, а те, что встретятся на пути, пусть лишь укрепят Вас!'}/>
             </div>
         </>
-        :
-        <>
-            <Spinner />
-        </>
+        
     )
 }
 

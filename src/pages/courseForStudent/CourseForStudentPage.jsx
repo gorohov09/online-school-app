@@ -3,7 +3,7 @@ import StructureCourse from "../../components/structureCourse/StructureCourse";
 import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import useCourseService from "../../services/CourseService";
-import Spinner from "../../components/spinner/Spinner";
+import {Spinner} from "react-bootstrap";
 import Button from '@mui/material/Button';
 
 import "./courseForStudentPage.scss";
@@ -61,7 +61,7 @@ const CourseForStudentPage = ({setIsAuth}) => {
                         </>
                         :
                         <>
-                            <Spinner />
+                            <Spinner style={{'color':'#6439ff'}}/>
                         </>
                     }
                 </div>
