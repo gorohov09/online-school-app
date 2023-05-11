@@ -40,7 +40,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function CustomizedTables() {
+export default function CourseList({isSortedByDate}) {
 
 	const [data, setData] = useState(null);
   	const [loading, setLoading] = useState(true);
@@ -74,7 +74,15 @@ export default function CustomizedTables() {
 
 	let items;
 	if (data !== null){
-		items = renderItems(data);
+		let temp = data;
+		if(isSortedByDate){
+			temp.courses = temp.courses.sort((a, b) => {
+				const firstDate = new Date(a.create);
+				const secondDate = new Date(b.create);		
+				return (secondDate - firstDate);
+			})
+		}
+		items = renderItems(temp);
 	}
 
 

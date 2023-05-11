@@ -4,10 +4,14 @@ import CourseList from "../../components/courseList/CourseList";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { Link } from 'react-router-dom'
+import {useState} from 'react';
 
 import './coursesPage.scss';
+import { Troubleshoot } from "@mui/icons-material";
 
 const CoursesPage = ({setIsAuth}) => {
+    const [isSortedByDate, setIsSortedByDate] = useState(false);
+
     return (
         <>
         <Navbar setIsAuth={setIsAuth}/>
@@ -25,11 +29,13 @@ const CoursesPage = ({setIsAuth}) => {
                                 <Button>
                                     <Link to="/addCourse"><span className="add">Добавить курс</span></Link>
                                 </Button>
+                                <Button color="secondary" 
+                                onClick={() => setIsSortedByDate(true) }
+                                ><span>Отсортировать по дате создания</span></Button>
                                 <Button color="secondary"><span>Отсортировать по рейтингу</span></Button>
-                                <Button color="secondary"><span>Отсортировать по дате создания</span></Button>
                             </Stack>
                         </div>
-                        <CourseList />
+                        <CourseList isSortedByDate={isSortedByDate}/>
                     </div>
                 </div>
             </div>
