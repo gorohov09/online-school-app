@@ -9,6 +9,8 @@
     box-shadow: -2px -5px 8px 0px rgba(34, 60, 80, 0.2);
     border-radius: 10px;
     height: 150px;
+    background: linear-gradient(#a890fd ,#6439ff);
+    color: var(--text-color);
 
     .left, .right {
         display: flex;
@@ -18,13 +20,13 @@
         .title {
             font-weight: bold;
             font-size: 18px;
-            color: rgb(160, 160, 160);
+            // color: rgb(160, 160, 160);
         }
 
         .counter {
             font-size: 30px;
             font-weight: 700;
-            color: #6439ff;
+            // color: #6439ff;
         }
 
         .percent {
@@ -33,9 +35,10 @@
         }
 
         .link {
+            color:var(--text-color);
             width: max-content;
             font-size: 16px;
-            border-bottom: 1px solid gray;
+            
         }
 
         .percentage {
@@ -45,7 +48,7 @@
         }
 
         .icon {
-            color: #6439ff;
+            // color: #6439ff;
             font-size: 50px;
             padding: 5px;
             border-radius: 5px;

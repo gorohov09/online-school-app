@@ -1,12 +1,22 @@
 .home {
     display: flex;
 
-    .homeContainer {
-        flex: 6;
+    .left_side{
+        // flex-basis: 25%;
+        min-width: 225px;
+    }
 
-        .widgets {
-            display: flex;
-            padding: 20px;
+    .right_side{
+        flex-basis: 100%;
+        background: linear-gradient(120deg, #dcd3ff, #ffffff, #cbbdff);
+        .homeContainer {
+            flex: 6;
+            .widgets {
+                display: flex;
+                justify-content: center;
+                padding: 20px;
+            }
         }
     }
+    
 }
