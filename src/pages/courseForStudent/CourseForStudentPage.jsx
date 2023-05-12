@@ -45,26 +45,32 @@ const CourseForStudentPage = ({setIsAuth}) => {
         <>
             <Header setIsAuth={setIsAuth}/>
             <div className="wrapper_course">
-                <StructureCourse courseId={courseId} setLessonId={setLessonId}/>
-                <div className="main_course">
-                    {
-                        !loading ?
-                        <>
-                            <h2>{name}</h2>
-                            <h3>Теоретическое видео:</h3>
-                            <div className="video" dangerouslySetInnerHTML={{ __html: embedHtmlVideo }} />
-                            <div className="tasksButton">
-                                <Button>
-                                    <Link to={`/solveTasks/${idLesson}`}><span className="solveTask">Решать задания</span></Link>
-                                </Button>
-                            </div>
-                        </>
-                        :
-                        <>
-                            <Spinner style={{'color':'#6439ff'}}/>
-                        </>
-                    }
+                <div className="left_side">
+                    <StructureCourse courseId={courseId} setLessonId={setLessonId}/>
                 </div>
+                <div className="right_side">
+                    <div className="main_course">
+                        {
+                            !loading ?
+                            <>
+                                <h2>{name}</h2>
+                                <h3>Теоретическое видео:</h3>
+                                <div className="video" dangerouslySetInnerHTML={{ __html: embedHtmlVideo }} />
+                                <div className="tasksButton">
+                                    <Button>
+                                        <Link to={`/solveTasks/${idLesson}`}><span className="solveTask">Решать задания</span></Link>
+                                    </Button>
+                                </div>
+                            </>
+                            :
+                            <>
+                                <Spinner style={{'color':'#6439ff'}}/>
+                            </>
+                        }
+                    </div>
+                </div>
+                
+                
             </div>
         </>
     )

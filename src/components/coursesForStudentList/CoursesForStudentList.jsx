@@ -10,7 +10,6 @@ const CoursesForStudentList = () => {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
-    // const [isEnrollReq, setIsEnrollReq] = useState(null);
     const [isEnrollReq, setIsEnrollReq] = useState(false);
 
     const {getPopularCourses} = useCourseService();

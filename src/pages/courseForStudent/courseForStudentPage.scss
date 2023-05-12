@@ -1,53 +1,59 @@
 .wrapper_course {
     display: flex;
     
+    .left_side{
+        min-width: 225px;
+    }
 
-    .main_course {
-        flex: 8;
-        display: flex;
-        flex-direction: column;
-        padding: 40px;
-        justify-content: center;
-        
-
-        h2 {
-            font-size: 52px;
-            color: #6439ff;
-            font-weight: 700;
-            margin-bottom: 40px;
-        }
-
-        h3 {
-            margin-top: 20px;
-            color: #6439ff;
-        }
-
-        .video {
+    .right_side{
+        .main_course {
+            flex: 8;
             display: flex;
+            flex-direction: column;
+            padding: 40px;
             justify-content: center;
-            padding: 30px;
-            iframe {
-                width: 800px;
-                height: 500px;
-            }
-        }
-
-        .tasksButton {
-            display: flex;
-            justify-content: center;
-            .solveTask {
-                color: white;
-                background-color: #6439ff;
-                padding: 10px;
-                font-size: 15px;
-                border-radius: 20px;
+            
+    
+            h2 {
+                font-size: 52px;
+                color: #6439ff;
+                font-weight: 700;
+                margin-bottom: 40px;
             }
     
-            a {
-                text-decoration: none;
+            h3 {
+                margin-top: 20px;
+                color: #6439ff;
             }
-        }
-
+    
+            .video {
+                display: flex;
+                justify-content: center;
+                padding: 30px;
+                iframe {
+                    width: 800px;
+                    height: 500px;
+                }
+            }
+    
+            .tasksButton {
+                display: flex;
+                justify-content: center;
+                .solveTask {
+                    color: white;
+                    background-color: #6439ff;
+                    padding: 10px;
+                    font-size: 15px;
+                    border-radius: 20px;
+                }
         
+                a {
+                    text-decoration: none;
+                }
+            }
+    
+            
+        }
     }
+    
 }
