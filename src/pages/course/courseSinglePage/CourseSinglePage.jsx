@@ -36,7 +36,7 @@ const CourseSinglePage = ({setIsAuth}) => {
             return (
                 <Fragment key={module.moduleId}>
                     <ListItemButton>
-                        <Link to={`/module/${module.moduleId}`}><span>{module.order}. {module.name}</span></Link>
+                        <Link to={`/module/${module.moduleId}`}><span style={{color:'#6439ff'}}>{module.order}. {module.name}</span></Link>
                     </ListItemButton>
                     <List component="div">
                         <div className="lessons">
@@ -44,8 +44,8 @@ const CourseSinglePage = ({setIsAuth}) => {
                                 module.lessons.map(lesson => {
                                     return (
                                         <Fragment key={lesson.lessonId}>
-                                            <ListItemButton sx={{ pl: 10 }}>
-                                                <Link to={`/lessons/${lesson.lessonId}`}><span>{lesson.order}. {lesson.name}</span></Link>
+                                            <ListItemButton sx={{ pl: 10}}>
+                                                <Link to={`/lessons/${lesson.lessonId}`}><span style={{color:'#6439ff'}}>{lesson.order}. {lesson.name}</span></Link>
                                             </ListItemButton>
                                         </Fragment>
                                     )
@@ -98,9 +98,9 @@ const CourseSinglePage = ({setIsAuth}) => {
                                     <span>{update}</span>
                                 </div>
                             </div>
-
+                            <h3>Структура курса:</h3>
                             <div className="structureCourse">
-                                <h3>Структура курса:</h3>
+                                
                                 
                                 <div className="addModule__button">
                                         <ThemeProvider theme={theme}>
