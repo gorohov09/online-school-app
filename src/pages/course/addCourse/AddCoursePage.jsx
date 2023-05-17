@@ -1,8 +1,6 @@
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Navbar from "../../../components/navbar/Navbar";
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import useCourseService from "../../../services/CourseService";
 import {Spinner} from "react-bootstrap";
@@ -24,30 +22,47 @@ const AddCoursePage = ({setIsAuth}) => {
 
     const {saveCourse} = useCourseService();
 
-    const saveCourseL = async () => {
-        const title = name;
-        const description = desc;
+    // const saveCourseL = async (e) => {
+    //     e.preventDefault();
 
-        if (title.value == null || title.value === '' || description.value == null || description.value === ''){
+    //     if (name == null || name === '' || desc == null || desc === ''){
+    //         return;
+    //     }
+    //     const data = {
+    //         name,
+    //         desc
+    //     }
+
+    //     const res = await saveCourse(data)
+    //         .then(setLoading(loading => true))
+        
+    //     if (res)
+    //         navigate("/courses")
+    // }
+
+    const onHandleSubmit = async(e) => {
+        e.preventDefault();
+
+        if (name == null || name === '' || desc == null || desc === ''){
             return;
         }
-        const data = {
-            name: title.value,
-            description: description.value
-        }
 
-        const res = await saveCourse(data)
-            .then(setLoading(loading => true))
-        
-        if (res)
-            navigate("/courses")
+        const data = await saveCourse({
+			name: name,
+		  	description: desc
+		});
+        console.log(data);
+		if (data?.status === 500){
+			console.log('Очистка формы')
+			e.target.reset(); 
+		}
+		else{
+			navigate("/courses")
+		}
     }
 
-    console.log('Рендер компонента');
     return (
         <>
-       
-        
         <Navbar setIsAuth={setIsAuth}/>
         <div className="course">
             <div className="left_side">
@@ -60,7 +75,7 @@ const AddCoursePage = ({setIsAuth}) => {
                             !loading ?
                             <div className="addCourse__form">
                                 <h2>Добавление курса</h2>
-                                <form onSubmit={saveCourseL}> 
+                                <form onSubmit={onHandleSubmit} className="course__form"> 
                                     <div className="course_name input">
                                         <label>
                                             <p>Название</p>
