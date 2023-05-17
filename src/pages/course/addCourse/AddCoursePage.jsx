@@ -22,24 +22,6 @@ const AddCoursePage = ({setIsAuth}) => {
 
     const {saveCourse} = useCourseService();
 
-    // const saveCourseL = async (e) => {
-    //     e.preventDefault();
-
-    //     if (name == null || name === '' || desc == null || desc === ''){
-    //         return;
-    //     }
-    //     const data = {
-    //         name,
-    //         desc
-    //     }
-
-    //     const res = await saveCourse(data)
-    //         .then(setLoading(loading => true))
-        
-    //     if (res)
-    //         navigate("/courses")
-    // }
-
     const onHandleSubmit = async(e) => {
         e.preventDefault();
 
