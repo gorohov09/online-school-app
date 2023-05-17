@@ -52,8 +52,8 @@ const AddLessonPage = ({setIsAuth}) => {
 
         const data = await saveLesson({
 			name,
-		  	linkVideo
-		}).then(setLoading(loading => true));
+            linkVideo
+		}, moduleId).then(setLoading(loading => true));
 
 		if (data?.status === 500){
 			console.log('Очистка формы')

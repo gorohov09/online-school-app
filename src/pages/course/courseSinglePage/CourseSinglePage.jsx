@@ -36,7 +36,8 @@ const CourseSinglePage = ({setIsAuth}) => {
             return (
                 <Fragment key={module.moduleId}>
                     <ListItemButton>
-                        <Link to={`/module/${module.moduleId}`}><span style={{color:'#6439ff'}}>{module.order}. {module.name}</span></Link>
+                        {/* <Link to={`/module/${module.moduleId}`}><span style={{color:'#6439ff'}}>{module.order}. {module.name}</span></Link> */}
+                        <span style={{color:'#6439ff'}}>{module.order}. {module.name}</span>
                     </ListItemButton>
                     <List component="div">
                         <div className="lessons">
