@@ -1,34 +1,58 @@
 .course {
     display: flex;
 
-    .courseContainer {
-        flex: 6;
-
-        .addCourse {
+    .left_side{
+        min-width: 225px;
+    }
+    
+    .right_side{
+        flex-basis: 100%;
+        background: linear-gradient(120deg, #dcd3ff, #ffffff, #cbbdff);
+        .courseContainer {
+            // flex: 6;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            padding: 40px;
             justify-content: center;
             align-items:center;
-            
-            h2 {
-                font-size: 52px;
-                color: #6439ff;
-                font-weight: 700;
-                margin-bottom: 60px;
-            }
+            .addCourse {
+                border-radius: 10px;
+                background: linear-gradient(#a890fd ,#6439ff);
+                color: var(--text-color);
+                width: fit-content;
+                display: flex;
+                flex-direction: column;
+                padding: 40px;
+                justify-content: center;
+                align-items:center;
 
-            span {
-                font-size: 20px;
-                color: #6439ff;
-                font-weight: 700;
-                margin-bottom: 15px;
-            }
-
-            .save {
-                width:fit-content;
-                align-self:center;
+                .addCourse__form{
+                    display: flex;
+                    flex-direction: column;
+                    align-items:center;
+                    border:2px solid #a890fd; 
+                    border-radius: 5px;
+                    h2 {
+                        text-align:center;
+                        font-size: 36px;
+                        font-weight: 400;
+                        margin-bottom: 60px;
+                    }
+        
+                    span {
+                        font-size: 20px;
+                        font-weight: 400;
+                        margin-bottom: 15px;
+                    }
+        
+                    .save {
+                        width:fit-content;
+                        align-self:center;
+                        color:var(--text-color);
+                    }
+                }
+                
             }
         }
     }
+    
 }
