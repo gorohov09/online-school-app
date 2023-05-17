@@ -77,32 +77,6 @@ const AddLessonPage = ({setIsAuth}) => {
                         {
                             !loading ?
                             <>
-                                {/* <h2>Добавление урока</h2>
-                                <Box
-                                    sx={{
-                                    width: 500,
-                                    maxWidth: '100%',
-                                    marginBottom: 4,
-                                    marginTop: 2
-                                }}>
-                                    <span>Введите название урока</span>
-                                    <TextField fullWidth label="Название урока" id="title" />
-                                </Box>
-                        
-                                <Box
-                                    sx={{
-                                    width: 500,
-                                    maxWidth: '100%',
-                                    marginBottom: 4,
-                                    marginTop: 2
-                                }}>
-                                    <span>Введите ссылку на видеоролик YouTube</span>
-                                    <TextField fullWidth label="Ссылка на видео" id="link" />
-                                </Box>
-
-                                <Button onClick={saveLessonL} className="save">
-                                    <span>Сохранить</span>
-                                </Button> */}
                                 <div className="addLesson__form">
                                 
                                 <form onSubmit={onHandleSubmit} className="lesson__form"> 

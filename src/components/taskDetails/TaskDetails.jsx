@@ -1,5 +1,7 @@
 import Button from '@mui/material/Button';
 import { useState } from 'react';
+import { ThemeProvider  } from '@mui/material/styles';
+import theme from '../muiTheme.jsx';
 
 import './taskDetails.scss';
 
@@ -28,8 +30,8 @@ const TaskDetails = ({task}) => {
                 </div>
             </div>
             <div className="answer">
-                <Button onClick={() => setIsVisible(!isVisibleRightAnswer)} variant="contained" color="success">
-                    Посмотреть правильный ответ
+                <Button onClick={() => setIsVisible(!isVisibleRightAnswer)} variant="contained" style={{background:'#6439ff'}}>
+                    Посмотреть ответ
                 </Button>
                 <p className={classAnswer}>{rightAnswer}</p>
             </div>
