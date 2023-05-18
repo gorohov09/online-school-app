@@ -44,24 +44,29 @@ const LessonSinglePage = ({setIsAuth}) => {
     }
     
     return (
+        <>
+        <Navbar setIsAuth={setIsAuth}/>
         <div className="lesson">
+            <div className="left_side">
             <Sidebar/>
+            </div>
+            <div className="right_side">
             <div className="lessonContainer">
-                <Navbar setIsAuth={setIsAuth}/>
+                
                 <div className="singleLesson">
                     {
                         !loading ?
                         <>
                             <h2>{name}</h2>
-                            <h3>Теоретическое видео:</h3>
-                            <div className="video" dangerouslySetInnerHTML={{ __html: embedHtmlVideo }} />
-                            <h3>Задачи на урок:</h3>
-                            <Button>
-                                    <Link to={`/addTask/${lessonId}`}><span className="addTask">Добавить задачу</span></Link>
-                            </Button>
-                            <div className="tasks">
-                                {tasks}
-                            </div>
+                                <h3>Теоретическое видео:</h3>
+                                <div className="video" dangerouslySetInnerHTML={{ __html: embedHtmlVideo }} />
+                                <h3>Задачи на урок:</h3>
+                                <Button>
+                                        <Link to={`/addTask/${lessonId}`}><span className="addTask">Добавить задачу</span></Link>
+                                </Button>
+                                <div className="tasks">
+                                    {tasks}
+                                </div>
                         </>
                         :
                         <>
@@ -70,7 +75,9 @@ const LessonSinglePage = ({setIsAuth}) => {
                     }
                 </div>
             </div>
+            </div>
         </div>
+        </>
     )
 }
 

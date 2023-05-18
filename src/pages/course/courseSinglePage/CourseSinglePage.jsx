@@ -8,12 +8,17 @@ import { useState, useEffect } from "react";
 import useCourseService from "../../../services/CourseService";
 import {Spinner} from "react-bootstrap";
 import { Fragment } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { ThemeProvider  } from '@mui/material/styles';
+import theme from '../../../components/muiTheme.jsx';
 
 import './courseSinglePage.scss';
 
 const CourseSinglePage = ({setIsAuth}) => {
 
     const {courseId} = useParams();
+    const navigate = useNavigate();
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -31,7 +36,8 @@ const CourseSinglePage = ({setIsAuth}) => {
             return (
                 <Fragment key={module.moduleId}>
                     <ListItemButton>
-                        <Link to={`/module/${module.moduleId}`}><span>{module.order}. {module.name}</span></Link>
+                        {/* <Link to={`/module/${module.moduleId}`}><span style={{color:'#6439ff'}}>{module.order}. {module.name}</span></Link> */}
+                        <span style={{color:'#6439ff'}}>{module.order}. {module.name}</span>
                     </ListItemButton>
                     <List component="div">
                         <div className="lessons">
@@ -39,8 +45,8 @@ const CourseSinglePage = ({setIsAuth}) => {
                                 module.lessons.map(lesson => {
                                     return (
                                         <Fragment key={lesson.lessonId}>
-                                            <ListItemButton sx={{ pl: 10 }}>
-                                                <Link to={`/lessons/${lesson.lessonId}`}><span>{lesson.order}. {lesson.name}</span></Link>
+                                            <ListItemButton sx={{ pl: 10}}>
+                                                <Link to={`/lessons/${lesson.lessonId}`}><span style={{color:'#6439ff'}}>{lesson.order}. {lesson.name}</span></Link>
                                             </ListItemButton>
                                         </Fragment>
                                     )
@@ -68,10 +74,14 @@ const CourseSinglePage = ({setIsAuth}) => {
         
 
     return (
+        <>
+        <Navbar setIsAuth={setIsAuth}/>
         <div className="course">
-            <Sidebar />
+            <div className="left_side">
+                <Sidebar />
+            </div>
+            <div className="right_side">
             <div className="courseContainer">
-                <Navbar setIsAuth={setIsAuth}/>
                 <div className="singleCourse">
                     {
                         !loading ?
@@ -89,12 +99,18 @@ const CourseSinglePage = ({setIsAuth}) => {
                                     <span>{update}</span>
                                 </div>
                             </div>
-
+                            <h3>Структура курса:</h3>
                             <div className="structureCourse">
-                                <h3>Структура курса:</h3>
-                                <Button>
-                                    <Link to={`/addModule/${courseId}`}><span className="addModule">Добавить модуль</span></Link>
-                                </Button>
+                                
+                                
+                                <div className="addModule__button">
+                                        <ThemeProvider theme={theme}>
+                                            <Button variant="contained" size="medium" onClick={() => navigate(`/addModule/${courseId}`)}>
+                                               Добавить модуль
+                                            </Button>
+                                        </ThemeProvider>
+                                        {/* <<Link to={`/addModule/${courseId}`/>}>Добавить модуль</Link> */}
+                                </div> 
                                 <List
                                     sx={{ width: '100%', maxWidth: 600, bgcolor: 'background.paper' }}
                                     component="nav"
@@ -110,8 +126,11 @@ const CourseSinglePage = ({setIsAuth}) => {
                     }
                 </div>
             </div>
+            </div>
+            
         </div>
+        </>
     )
 }
 
-export default CourseSinglePage
+export default CourseSinglePage;

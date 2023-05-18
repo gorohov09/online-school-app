@@ -92,8 +92,9 @@ const useCourseService = () => {
         return res;
     }
 
+
     const getPopularCourses = async () => {
-        console.log(getToken());
+        // console.log(getToken());
         const res = await getResource(_apiBase + `course/popularCourses/`);
 
         const result = res.popularCourses.sort((a, b) => {
@@ -102,6 +103,8 @@ const useCourseService = () => {
         
         return result;
     }
+
+    
 
     const getTasksByLesson = async (lessonId) => {
         const res = await getResource(_apiBase + `student/${lessonId}/tasks`);
@@ -121,6 +124,47 @@ const useCourseService = () => {
     const getRatingStudentsByCourse = async (courseId) => {
         const res = await getResource(_apiBase + `course/ratingStudents/${courseId}`);
         return res;
+    }
+
+    const getTeacherStudentsCount = async () => {
+        const res = await getResource(_apiBase + `course/teacherCourses/`);
+
+        let result = res.courses;
+        let counter = 0;
+        console.log(result);
+        result = result.forEach(course => {
+            counter += course.countStudents;
+        });
+
+        console.log(counter);
+        
+        return counter;
+    }
+    const getStudentsCount = async () => {
+        const res = await getResource(_apiBase + `course/popularCourses/`);
+        
+        let result = res.popularCourses;
+        let counter = 0;
+        console.log(result);
+        result = result.forEach(course => {
+            counter += course.countStudents;
+        });
+
+        console.log(counter);
+        
+        return counter;
+    }
+
+    const getTeacherCoursesCount = async () => {
+        const res = await getResource(_apiBase + `course/teacherCourses/`);
+
+        return res.courses.length;
+    }
+
+    const getCoursesCount = async () => {
+        const res = await getResource(_apiBase + `course/popularCourses/`);
+
+        return res.popularCourses.length;
     }
 
     return {error,
@@ -143,7 +187,11 @@ const useCourseService = () => {
         getTasksByLesson,
         getFirstTaskByLesson,
         getTaskById,
-        getRatingStudentsByCourse
+        getRatingStudentsByCourse,
+        getTeacherStudentsCount,
+        getTeacherCoursesCount,
+        getCoursesCount,
+        getStudentsCount
     }
 }
 

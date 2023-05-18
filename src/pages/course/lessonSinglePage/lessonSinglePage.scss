@@ -1,34 +1,43 @@
 .lesson {
     display: flex;
+    min-height: 100vh;
 
-    .lessonContainer {
+    .left_side{
+        min-width: 225px;
+    }
+
+    .right_side{
+        .lessonContainer {
         flex: 6;
 
         .singleLesson {
+            margin-top: 20px;
+            border-radius: 10px;
+            background: linear-gradient(#a890fd ,#6439ff);
             display: flex;
             flex-direction: column;
             padding: 40px;
             justify-content: center;
 
             .addTask {
-                color: white;
-                background-color: #6439ff;
+                color: var(--text-color);
+                background-color: var(--primary-color);
                 padding: 10px;
                 font-size: 15px;
-                border-radius: 20px;
+                border-radius: 10px;
                 text-decoration: none;
             }
             
             h2 {
-                font-size: 52px;
-                color: #6439ff;
-                font-weight: 700;
+                font-size: 42px;
+                color: var(--text-color);
+                font-weight: 500;
                 margin-bottom: 40px;
             }
 
             h3 {
                 margin-top: 20px;
-                color: #6439ff;
+                color: var(--text-color);
             }
 
             .video {
@@ -39,6 +48,9 @@
                     width: 800px;
                     height: 500px;
                 }
+                border: 1px solid var(--secondary--color);
+                border-radius:10px;
+                
             }
 
             .tasks{
@@ -46,7 +58,13 @@
                 justify-content: space-around;
                 flex-wrap: wrap;
                 margin-top: 20px;
+                border: 1px solid var(--secondary--color);
+                border-radius:10px;
             }
         }
+
+        
     }
+}
+    
 }

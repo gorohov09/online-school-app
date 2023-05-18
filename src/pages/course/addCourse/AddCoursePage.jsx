@@ -1,11 +1,12 @@
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Navbar from "../../../components/navbar/Navbar";
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import useCourseService from "../../../services/CourseService";
 import {Spinner} from "react-bootstrap";
+
+import { ThemeProvider  } from '@mui/material/styles';
+import theme from '../../../components/muiTheme.jsx';
 
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -15,74 +16,78 @@ import './addCoursePage.scss';
 const AddCoursePage = ({setIsAuth}) => {
 
     const [loading, setLoading] = useState(false);
+    const [name, setName] = useState();
+    const [desc, setDesc] = useState();
     const navigate = useNavigate();
 
     const {saveCourse} = useCourseService();
 
-    const saveCourseL = async () => {
-        const title = document.querySelector('#title');
-        const description = document.querySelector('#description')
+    const onHandleSubmit = async(e) => {
+        e.preventDefault();
 
-        if (title.value == null || title.value === '' || description.value == null || description.value === ''){
+        if (name == null || name === '' || desc == null || desc === ''){
             return;
         }
-        const data = {
-            name: title.value,
-            description: description.value
-        }
 
-        const res = await saveCourse(data)
-            .then(setLoading(loading => true))
-        
-        if (res)
-            navigate("/courses")
+        const data = await saveCourse({
+			name: name,
+		  	description: desc
+		});
+        console.log(data);
+		if (data?.status === 500){
+			console.log('Очистка формы')
+			e.target.reset(); 
+		}
+		else{
+			navigate("/courses")
+		}
     }
 
-    console.log('Рендер компонента');
     return (
+        <>
+        <Navbar setIsAuth={setIsAuth}/>
         <div className="course">
-            <Sidebar />
-            <div className="courseContainer">
-                <Navbar setIsAuth={setIsAuth}/>
-                <div className="addCourse">
-                    {
-                        !loading ?
-                        <>
-                            <h2>Добавление курса</h2>
-                            <Box
-                                sx={{
-                                width: 500,
-                                maxWidth: '100%',
-                                marginBottom: 4,
-                                marginTop: 2
-                            }}>
-                                <span>Введите название курса</span>
-                                <TextField fullWidth label="Название курса" id="title" />
-                            </Box>
-                    
-                            <Box
-                                sx={{
-                                width: 500,
-                                maxWidth: '100%',
-                                marginBottom: 4,
-                                marginTop: 2
-                            }}>
-                                <span>Введите описание курса</span>
-                                <TextField fullWidth label="Описание курса" id="description" />
-                            </Box>
-
-                            <Button onClick={saveCourseL} className="save">
-                                <span>Сохранить курс</span>
-                            </Button>
-                        </>
-                        : 
-                        <>
-                            <Spinner style={{'color':'#6439ff'}}/>
-                        </>
-                    }
+            <div className="left_side">
+                <Sidebar />
+            </div>
+            <div className="right_side">
+                <div className="courseContainer">
+                    <div className="addCourse">
+                        {
+                            !loading ?
+                            <div className="addCourse__form">
+                                <h2>Добавление курса</h2>
+                                <form onSubmit={onHandleSubmit} className="course__form"> 
+                                    <div className="course_name input">
+                                        <label>
+                                            <p>Название</p>
+                                            <input type="text" onChange={e => setName(e.target.value)}/>
+                                        </label>
+                                    </div>
+                                    <div className="course_desc input">
+                                        <label>
+                                            <p>Описание</p>
+                                            <input type="text" onChange={e => setDesc(e.target.value)}/>
+                                        </label>
+                                    </div>
+                                    <div className="button input">
+                                        <ThemeProvider theme={theme}>
+                                            <Button variant="contained" size="medium" type="submit">Добавить</Button>
+                                        </ThemeProvider>
+                                    </div>     
+                                </form>
+                               
+                            </div>
+                            : 
+                            <>
+                                <Spinner style={{'color':'#6439ff'}}/>
+                            </>
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
+        </div> 
+        </>
     )
 }
 

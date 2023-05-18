@@ -5,7 +5,8 @@
     width: 550px;
     border: #6439ff solid 3px;
     border-radius: 30px;
-    background-color: #6439ff;
+    // background-color: var(--secondary--color);
+    background: linear-gradient(#6439ff, #a890fd );
     margin: 20px;
 
     .name {
@@ -48,11 +49,13 @@
     }
 
     .answer {
+        margin-left: 25px;
         p {
             margin-top: 10px;
             font-size: 22px;
             color: white;
             font-weight: 500;
+            
         }
 
         .hide {

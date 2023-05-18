@@ -8,16 +8,23 @@ import "./homePage.scss";
 
 const HomePage = ({setIsAuth}) => {
     return (
+        <>
+        <Navbar setIsAuth={setIsAuth}/>
         <div className="home">
-            <Sidebar />
-            <div className="homeContainer">
-                <Navbar setIsAuth={setIsAuth}/>
-                <div className="widgets">
-                    <WidgetInfo type="students"/>
-                    <WidgetInfo type="courses"/>
+            <div className="left_side">
+                <Sidebar />
+            </div>
+            <div className="right_side">
+                <div className="homeContainer">
+                    <div className="widgets">
+                        <WidgetInfo type="students"/>
+                        <WidgetInfo type="courses"/>
+                    </div>
                 </div>
             </div>
+            
         </div>
+        </>
     )
 }
 

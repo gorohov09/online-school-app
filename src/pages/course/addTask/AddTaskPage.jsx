@@ -15,14 +15,15 @@ import useCourseService from "../../../services/CourseService";
 import {Spinner} from "react-bootstrap";
 
 
-import './addTaskPage.scss';
+// import './addTaskPage.scss';
 
 const AddTaskPage = ({setIsAuth}) => {
 
     const {lessonId} = useParams();
     const [loading, setLoading] = useState(false);
-    const [typeTask, setType] = useState('freeResponse')
+    const [typeTask, setType] = useState("freeResponse");
     const [value, setValue] = useState('1');
+
     const navigate = useNavigate();
 
     const {saveTask} = useCourseService();
@@ -35,7 +36,7 @@ const AddTaskPage = ({setIsAuth}) => {
             setType("oneAnswer");
     };
 
-    const saveTaskL = async () => {
+    const saveTaskL = async (e) => {
         const name = document.querySelector('#name');
         const description = document.querySelector('#description');
         const question = document.querySelector('#question');
@@ -43,15 +44,47 @@ const AddTaskPage = ({setIsAuth}) => {
         const answerType2 = document.querySelector('#answerType2');
         const wrongAnswers = document.querySelector('#wrongAnswers');
 
-        const data = {
-            name: name.value,
-            type: typeTask,
-            description: description.value,
-            question: question.value,
-            answer: typeTask === "freeResponse" ? answerType1.value : answerType2.value,
-            answers: null,
-            wrongAnswers: typeTask === "oneAnswer" ? wrongAnswers?.value : null
+        if (name.value == null || name.value === '' || description.value == null || description.value === '' ||
+            question.value == null || question.value === ''){
+            return;
         }
+        if(typeTask === "freeResponse" ){
+            if(answerType1.value == null || answerType1.value === ''){
+                return;
+            }
+        }
+        if(typeTask === "oneAnswer"){
+            if( answerType2.value == null || answerType2.value === '' || 
+            wrongAnswers.value == null || wrongAnswers.value === ''){
+                return;
+            }
+            
+        }
+
+
+        let data = {};
+        if (typeTask == "freeResponse") {
+            data = {
+                name: name.value,
+                type: typeTask,
+                description: description.value,
+                question: question.value,
+                answer: answerType1.value,
+                answers: null,
+                wrongAnswers: typeTask === "oneAnswer" ? wrongAnswers?.value : null
+            }
+        } else {
+            data = {
+                name: name.value,
+                type: typeTask,
+                description: description.value,
+                question: question.value,
+                answer: answerType2.value,
+                answers: null,
+                wrongAnswers: typeTask === "oneAnswer" ? wrongAnswers?.value : null
+            }
+        }
+        
 
         console.log(data);
         console.log(lessonId);
@@ -59,11 +92,16 @@ const AddTaskPage = ({setIsAuth}) => {
         const res = await saveTask(data, lessonId)
             .then(setLoading(loading => true))
         
-        if (res)
+        if (res?.status === 500){
+            console.log('Очистка формы')
+            e.target.reset(); 
+        }
+        else{
             navigate(`/lessons/${lessonId}`)
+        }
+           
     }
 
-    console.log(lessonId);
 
     return (
         <div className="task">
