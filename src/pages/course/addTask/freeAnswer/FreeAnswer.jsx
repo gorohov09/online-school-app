@@ -1,8 +1,8 @@
-
+import {useEffect} from 'react';
 import './freeAnswer.scss';
 
-const FreeAnswer = ({setAnswer}) => {
-
+const FreeAnswer = ({setAnswer, setType}) => {
+    useEffect(() => setType('freeResponse'), []);
     return(
         <div className="form login_form">
             <form> 

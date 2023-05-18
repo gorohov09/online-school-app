@@ -3,7 +3,7 @@ import { useState } from "react";
 import * as React from 'react';
 
 import Button from '@mui/material/Button';
-
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Navbar from "../../../components/navbar/Navbar";
@@ -13,8 +13,11 @@ import theme from '../../../components/muiTheme.jsx';
 
 import useCourseService from "../../../services/CourseService";
 import OneAnswer from "./oneAnswer/OneAnswer";
+import FreeAnswer from "./freeAnswer/FreeAnswer";
 import {Spinner} from "react-bootstrap";
 import './addTaskPage.scss';
+
+
 
 const AddTaskPage = ({setIsAuth}) => {
 
@@ -28,21 +31,52 @@ const AddTaskPage = ({setIsAuth}) => {
     const [answer, setAnswer] = useState('');
     const [answers, setAnswers] = useState(null);
     const [wrongAnswers, setWrongAnswers] = useState('');
+    const [isFreeAnswer, setIsFreeAnswer] = useState(true);
 
     const {saveTask} = useCourseService();
 
-    const onHandleSubmit = (e) => {
-        // let data = {};
-        // if (typeTask == "freeResponse") {
-        //     data = {
-        //         name: name.value,
-        //         type: typeTask,
-        //         description: description.value,
-        //         question: question.value,
-        //         answer: answerType1.value,
-        //         answers: null,
-        //         wrongAnswers: typeTask === "oneAnswer" ? wrongAnswers?.value : null
-        //     }
+    const onHandleSubmit = async(e) => {
+        e.preventDefault();
+
+        if (name == null || name === '' || description == null || description === ''||
+        question == null || question === '' || answer == null || answer === ''){
+            return;
+        }
+
+        if (type == 'oneAnswer' ){
+            if( wrongAnswers == null || wrongAnswers === '')
+            
+            return;
+        }
+
+        let data = {
+            name,
+            type,
+            description,
+            question,
+            answer,
+            answers: null,
+        };
+        if (type == "oneAnswer") {
+            data = {...data, wrongAnswers};
+        } else {
+            data = {...data, wrongAnswers:null};
+        }
+        
+
+        console.log(data);
+        console.log(lessonId);
+
+        const res = await saveTask(data, lessonId)
+            .then(setLoading(loading => true))
+        
+        if (res?.status === 500){
+            console.log('Очистка формы')
+            e.target.reset(); 
+        }
+        else{
+            navigate(`/lessons/${lessonId}`)
+        }
     }
 
     return(
@@ -75,8 +109,15 @@ const AddTaskPage = ({setIsAuth}) => {
                                     </label>
                                 </div>
 
-                                <OneAnswer setAnswer={setAnswer} setWrongAnswers={setWrongAnswers}/>
- 
+                                <ThemeProvider theme={theme}>
+                                    <ButtonGroup variant="contained" size="large" aria-label="outlined button group">
+                                        <Button disabled={isFreeAnswer} onClick={() => setIsFreeAnswer(true)}>Вопрос</Button>
+                                        <Button disabled={!isFreeAnswer} onClick={() => setIsFreeAnswer(false)}>Выбор ответа</Button>
+                                    </ButtonGroup>
+                                </ThemeProvider>
+
+                                {isFreeAnswer ? <FreeAnswer setAnswer={setAnswer} setType={setType}/> : <OneAnswer setAnswer={setAnswer} setWrongAnswers={setWrongAnswers} setType={setType}/>}
+                                
                                 <div className="button input">
                                     <ThemeProvider theme={theme}>
                                         <Button variant="contained" size="medium" type="submit">Добавить</Button>
@@ -84,7 +125,7 @@ const AddTaskPage = ({setIsAuth}) => {
                                 </div>     
                             </form>
                     </div>
-                        </div>
+                </div>
                     
                     
                 </div>

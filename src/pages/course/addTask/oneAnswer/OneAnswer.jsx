@@ -3,22 +3,24 @@ import {useState, useEffect} from 'react';
 import './oneAnswer.scss';
 
 
-const OneAnswer = ({setAnswer, setWrongAnswers}) => {
+const OneAnswer = ({setAnswer, setWrongAnswers, setType}) => {
 
+    useEffect(() => setType('oneAnswer'), []);
     const [wa, setWA] = useState('');
-    const [waBefore, setWABefore] = useState('');
 
     const onChangeWA = (e) => {
+        let term = e.target.value;
         setWA(e.target.value);
-        if(wa.indexOf(',,')!== -1 || wa.match(/,/g).length > 2) {
-            setWA(wa.slice(0, wa.length -1));
-            
-        }
+        if(term.indexOf(',,')!== -1 || term.match(/,/g).length > 2) {
+            setWA(term.slice(0, term.length -1));
+       } else {
+            if(term.match(/,/g).length === 2){
+                setWrongAnswers(term);
+                console.log(wa);
+            }
+       }
     }
 
-    useEffect(()=>{
-        setWABefore(wa);
-    }, [wa])
 
     return(
         <div className="form login_form">
