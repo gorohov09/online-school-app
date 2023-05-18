@@ -53,13 +53,15 @@ const CourseForStudentPage = ({setIsAuth}) => {
                         {
                             !loading ?
                             <>
-                                <h2>{name}</h2>
-                                <h3>Теоретическое видео:</h3>
-                                <div className="video" dangerouslySetInnerHTML={{ __html: embedHtmlVideo }} />
-                                <div className="tasksButton">
-                                    <Button>
-                                        <Link to={`/solveTasks/${idLesson}`}><span className="solveTask">Решать задания</span></Link>
-                                    </Button>
+                                <div className="main_course__wrapper">
+                                    <h2>{name}</h2>
+                                    <h3>Теоретическое видео:</h3>
+                                    <div className="video" dangerouslySetInnerHTML={{ __html: embedHtmlVideo }} />
+                                    <div className="tasksButton">
+                                        <Button>
+                                            <Link to={`/solveTasks/${idLesson}`}><span className="solveTask">Решать задания</span></Link>
+                                        </Button>
+                                    </div>
                                 </div>
                             </>
                             :
