@@ -68,7 +68,7 @@ const StructureCourse = ({courseId, setLessonId}) => {
                         <Link to={`/studentRatingByCourse/${courseId}`}><h4>Посмотреть рейтинг</h4></Link>
                     </div>
                     <List
-                        sx={{ width: '100%', maxWidth: 600, bgcolor: 'background.paper' }}
+                        sx={{ width: '100%', maxWidth: 600 }}
                         component="nav"
                         aria-labelledby="nested-list-subheader">       
                         {items}

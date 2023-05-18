@@ -1,8 +1,7 @@
 .structue_course_sidebar {
+    height: 100%;
+    background:linear-gradient(175deg, var(--secondary--color), #f8f6ff);
     flex: 2;
-    border-right: 0.5px solid lightgray;
-    min-height: 100vh;
-    background-color: white;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -47,13 +46,13 @@
     h3 {
         font-size: 25px;
         font-weight: 700;
-        color: #6439ff;
+        color: var(--text-color)
     }
 
     h4 {
         font-size: 19px;
         font-weight: 500;
-        color: #6439ff;
+        color: var(--text-color);
     }
 
     .moduleButton {
@@ -61,7 +60,7 @@
         cursor: default;
         font-size: 25px;
         font-weight: 700;
-        color: #6439ff;
+        color: var(--text-color);
     }
 
     a {
@@ -71,6 +70,6 @@
     .lessonButton {
         font-size: 22px;
         font-weight: 700;
-        color: #6439ff;;
+        color: var(--text-color)
     }
 }

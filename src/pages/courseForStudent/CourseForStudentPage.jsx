@@ -12,6 +12,7 @@ const CourseForStudentPage = ({setIsAuth}) => {
     const {courseId} = useParams();
     const [selectLessonId, setLessonId] = useState(null)
     const [dataLesson, setDataLesson] = useState(null);
+    // const [description, setDescription] = useState();
     const [loading, setLoading] = useState(true);
     const isInitialMount = useRef(true);
 
@@ -34,11 +35,12 @@ const CourseForStudentPage = ({setIsAuth}) => {
             .then(setLoading(false));
     }, []);
 
-    let idLesson, name, embedHtmlVideo;
+    let idLesson, name, embedHtmlVideo, description;
     if (dataLesson != null){
         idLesson = dataLesson.id;
         name = dataLesson.name;
         embedHtmlVideo = dataLesson.embedHtmlVideo;
+        console.log(dataLesson);
     }
 
     return (
@@ -53,13 +55,16 @@ const CourseForStudentPage = ({setIsAuth}) => {
                         {
                             !loading ?
                             <>
-                                <h2>{name}</h2>
-                                <h3>Теоретическое видео:</h3>
-                                <div className="video" dangerouslySetInnerHTML={{ __html: embedHtmlVideo }} />
-                                <div className="tasksButton">
-                                    <Button>
-                                        <Link to={`/solveTasks/${idLesson}`}><span className="solveTask">Решать задания</span></Link>
-                                    </Button>
+                                <div className="main_course__wrapper">
+                                    <h2>{name}</h2>
+                                    <p>{description}</p>
+                                    <h3>Теоретическое видео:</h3>
+                                    <div className="video" dangerouslySetInnerHTML={{ __html: embedHtmlVideo }} />
+                                    <div className="tasksButton">
+                                        <Button>
+                                            <Link to={`/solveTasks/${idLesson}`}><span className="solveTask">Решать задания</span></Link>
+                                        </Button>
+                                    </div>
                                 </div>
                             </>
                             :
