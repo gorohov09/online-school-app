@@ -9,6 +9,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { ThemeProvider  } from '@mui/material/styles';
+import theme from '../muiTheme.jsx';
 
 
 import './game.scss';
@@ -71,22 +73,21 @@ const Game = ({taskInform, answers, render, setRender}) => {
                     }
                     
                 </div>
-                <h1>{taskInform.name}</h1>
-                <h2>{taskInform.question}</h2>
-                <div className="text_field_block">
-                    <TextField
-                        id="outlined-controlled"
-                        label="Введи ответ"
-                        value={answer}
-                        onChange={(event) => {
-                            setAnswer(event.target.value);
-                        }}
-                    />
+                <h1 style={{color:'#ffffff'}}>{taskInform.name}</h1>
+                <h2 style={{color:'#ffffff'}}>{taskInform.question}</h2>
+                <div id="outlined-controlled" className="password input">
+                    <label>
+                        <p>Введите ответ</p>
+                        <input type="answer" value={answer} onChange={e => setAnswer(e.target.value)}/>
+                    </label>
                 </div>
+               
                 <div className="button_block">
-                    <Button onClick={onMakeAttempt} className="toAnswer">
-                        <span className="toAnswer_student">Ответить</span>
-                    </Button>
+                    <ThemeProvider theme={theme}>
+                        <Button variant="contained" size="medium" onClick={onMakeAttempt} className="toAnswer">
+                            <span className="toAnswer_student">Ответить</span>
+                        </Button>
+                    </ThemeProvider>
                 </div>
             </>
         )
@@ -109,21 +110,24 @@ const Game = ({taskInform, answers, render, setRender}) => {
                     }
                     
                 </div>
-                <h1>{taskInform.name}</h1>
-                <h2>{taskInform.question}</h2>
+                <h1 style={{color:'#ffffff'}}>{taskInform.name}</h1>
+                <h2 style={{color:'#ffffff'}}>{taskInform.question}</h2>
                 <div className="text_field_block">
+                <ThemeProvider theme={theme}>
                     <FormControl>
-                    <FormLabel id="demo-row-radio-buttons-group-label">Выберите ответ:</FormLabel>
+                    <FormLabel id="demo-row-radio-buttons-group-label" style={{color:'#ffffff'}}>Выберите ответ:</FormLabel>
+                    
                     <RadioGroup
                         row
                         aria-labelledby="demo-row-radio-buttons-group-label"
                         name="row-radio-buttons-group">
-                        <FormControlLabel value={answers[0].value} onClick={(event) => {setAnswer(event.target.value);}} control={<Radio />} label={answers[0].value} />
-                        <FormControlLabel value={answers[1].value} onClick={(event) => {setAnswer(event.target.value);}} control={<Radio />} label={answers[1].value}/>
-                        <FormControlLabel value={answers[2].value} onClick={(event) => {setAnswer(event.target.value);}} control={<Radio />} label={answers[2].value} />
-                        <FormControlLabel value={answers[3].value} onClick={(event) => {setAnswer(event.target.value);}} control={<Radio />} label={answers[3].value} />
+                        <FormControlLabel value={answers[0].value} onClick={(event) => {setAnswer(event.target.value);}} control={<Radio />} style={{color:'#ffffff'}} label={answers[0].value} />
+                        <FormControlLabel value={answers[1].value} onClick={(event) => {setAnswer(event.target.value);}} control={<Radio />} style={{color:'#ffffff'}} label={answers[1].value}/>
+                        <FormControlLabel value={answers[2].value} onClick={(event) => {setAnswer(event.target.value);}} control={<Radio />} style={{color:'#ffffff'}} label={answers[2].value} />
+                        <FormControlLabel value={answers[3].value} onClick={(event) => {setAnswer(event.target.value);}} control={<Radio />} style={{color:'#ffffff'}} label={answers[3].value} />
                     </RadioGroup>
                     </FormControl>
+                </ThemeProvider>
                 </div>
                 <div className="button_block">
                     <Button onClick={onMakeAttempt} className="toAnswer">

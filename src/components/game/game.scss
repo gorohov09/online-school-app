@@ -3,34 +3,62 @@
     min-height: 300px;
     border-radius: 30px;
     padding: 40px;
-    background-color: #fff;
+    background: linear-gradient(#a890fd ,#6439ff);
     position: relative;
     margin: auto auto;
 
+    .input{
+
+      label{
+          display:flex;
+          flex-direction: column;
+          align-items:center;
+          justify-content: center;
+      }
+      p {
+          text-align: center;
+          font-size: 1em;
+          font-weight: 400;
+          color: white;
+      }
+
+      input[type=answer] {
+          padding:5px; 
+          border:2px solid #ccc; 
+          -webkit-border-radius: 5px;
+          border-radius: 5px;
+      }
+      
+      input[type=answer]:focus {
+          border-color:#333;
+      }
+
+      margin-bottom: 15px;
+  }
     .inform {
       display: flex;
       justify-content: space-between;
       p {
         font-weight: 500;
         font-size: 17px;
-        color:#6a5be2;
+        color:var(--text-color);
       }
       .isSolveAttempt {
         .correct {
-          color: green;
+          color: #a890fd;
         }
         .error {
-          color: red;
+          color: #ae007c;
         }
       }
     }
 
     .text_field_block {
       .success {
-        border: 3px solid green;
+        border: 3px solid #a890fd;
       }
       .error {
-        border: 3px solid red;
+        border: 3px solid #ae007c;
       }
       .noAttempt {
         border: none;
@@ -45,12 +73,12 @@
       justify-content: center;
       .toAnswer {
         font-weight: bold;
-        border-radius: 30px;
+        border-radius: 5px;
         border: 0;
         font-size: 20px;
-        background-color: #6a5be2;
-        padding: 10px 10px;
-        color: #fff;
+        background-color: var(--text-color);
+        padding: 0 10px;
+        color: var(--primary-color);
         margin-top: 20px;
         cursor: pointer;
       }
@@ -82,31 +110,31 @@
       }
     }
   
-    &:before,
-    &:after {
-      content: '';
-      display: block;
-      height: 50px;
-      border-bottom-left-radius: 30px;
-      border-bottom-right-radius: 30px;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+    // &:before,
+    // &:after {
+    //   content: '';
+    //   display: block;
+    //   height: 50px;
+    //   border-bottom-left-radius: 30px;
+    //   border-bottom-right-radius: 30px;
+    //   position: absolute;
+    //   left: 50%;
+    //   transform: translateX(-50%);
+    // }
   
-    &:before {
-      width: 95%;
-      bottom: -10px;
-      background-color: rgba(255, 255, 255, 0.8);
-      z-index: 0;
-    }
+    // &:before {
+    //   width: 95%;
+    //   bottom: -10px;
+    //   background-color: rgba(255, 255, 255, 0.8);
+    //   z-index: 0;
+    // }
   
-    &:after {
-      width: 90%;
-      bottom: -20px;
-      background-color: rgba(255, 255, 255, 0.3);
-      z-index: 1;
-    }
+    // &:after {
+    //   width: 90%;
+    //   bottom: -20px;
+    //   background-color: rgba(255, 255, 255, 0.3);
+    //   z-index: 1;
+    // }
   
     h1 {
       margin: 0;
@@ -126,7 +154,7 @@
         border-radius: 15px;
         margin-bottom: 10px;
         cursor: pointer;
-        transition: all 0.1s ease-in-out;
+        // transition: all 0.1s ease-in-out;
   
         &:hover {
           border: 2px solid rgba(0, 0, 0, 0.3);
