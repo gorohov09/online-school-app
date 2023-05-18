@@ -15,7 +15,7 @@ import useCourseService from "../../../services/CourseService";
 import {Spinner} from "react-bootstrap";
 
 
-import './addTaskPage.scss';
+// import './addTaskPage.scss';
 
 const AddTaskPage = ({setIsAuth}) => {
 
