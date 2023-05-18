@@ -14,6 +14,7 @@ const SolveTasksPage = ({setIsAuth}) => {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [shuffledAnswers, setShuffledAnswers] = useState([]);
     const [taskId, setTaskId] = useState(null);
     const [render, setRender] = useState(false);
     const isFirstRun = useRef(true);
@@ -24,9 +25,10 @@ const SolveTasksPage = ({setIsAuth}) => {
         getFirstTaskByLesson(lessonId)
             .then(data => {
                 setData(data);
-                setTaskId(data.taskId)
+                setTaskId(data.taskId);
+                if(data.type === 'Один ответ') {setShuffledAnswers(shuffleAnswers(data.answer, data.wrongAnswers))} 
             })
-            .then(setLoading(false));
+            .then(setLoading(false))
     }, []);
 
     useEffect(() => {
@@ -36,9 +38,19 @@ const SolveTasksPage = ({setIsAuth}) => {
         }
 
         getTaskById(taskId)
-            .then(data => setData(data))
+            .then(data => {setData(data);
+                if(data.type === 'Один ответ') {setShuffledAnswers(shuffleAnswers(data.answer, data.wrongAnswers))} })
             .then(setLoading(false));
+        console.log(data);
+
+
     }, [taskId, render]);
+
+    const shuffleAnswers = (answer, wrongAnswers) => {
+        let temp = [answer, ...wrongAnswers];
+        return temp.sort(() => Math.random() - 0.5);
+    }
+
 
     return (
         <>
@@ -48,7 +60,7 @@ const SolveTasksPage = ({setIsAuth}) => {
             {
                 data != null ?
                 <>
-                    <Game taskInform={data} render={render} setRender={setRender}/>
+                    <Game taskInform={data} answers={shuffledAnswers} render={render} setRender={setRender}/>
                 </>
                 :
                 <>

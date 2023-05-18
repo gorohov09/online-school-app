@@ -24,25 +24,6 @@ const AddLessonPage = ({setIsAuth}) => {
 
     const {saveLesson} = useCourseService();
 
-    // const saveLessonL = async () => {
-    //     const title = document.querySelector('#title');
-    //     const link = document.querySelector('#link')
-
-    //     if (title.value == null || title.value === '' || link.value == null || link.value === ''){
-    //         return;
-    //     }
-    //     const data = {
-    //         name: title.value,
-    //         linkVideo: link.value
-    //     }
-
-    //     const res = await saveLesson(data, moduleId)
-    //         .then(setLoading(loading => true))
-        
-    //     if (res)
-    //         navigate(-1)
-    // }
-
     const onHandleSubmit = async(e) => {
         e.preventDefault();
 
