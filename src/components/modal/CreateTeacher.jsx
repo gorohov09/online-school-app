@@ -38,11 +38,12 @@ const CreateTeacher = ({show, onHide}) => {
 
     useEffect(() => {
         clearError();
-    }, []);
+        setIsRequest(false);
+    }, [firstName, lastName, password, email]);
 
     let errorMessage = (
         <div>
-            <span style={{'color': '#000000', 'font-size': '1em'}}>
+            <span style={{'color': '#6439ff', 'font-size': '1em'}}>
                 Произошла ошибка
             </span>
         </div>
@@ -51,7 +52,7 @@ const CreateTeacher = ({show, onHide}) => {
 
     let requestOkMessage = (
         <div>
-            <span style={{'color': '#000000', 'font-size': '1em'}}>
+            <span style={{'color': '#6439ff', 'font-size': '1em'}}>
                 Преподаватель добавлен
             </span>
         </div>
@@ -67,12 +68,15 @@ const CreateTeacher = ({show, onHide}) => {
                 size="lg"
                 centered
             >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
+                <Modal.Header closeButton
+                    style={{background: '#ccc2f8' }}>
+                    <Modal.Title id="contained-modal-title-vcenter" style={{color: '#6439ff'}}>
                     Добавить преподавателя
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body className='d-flex flex-column align-items-center'>
+                <Modal.Body 
+                    className='d-flex flex-column align-items-center'
+                    style={{background: '#ccc2f8' }}>
                     <Form.Control
                         className='mt-3 w-75'
                         placeholder='Имя'
@@ -100,10 +104,13 @@ const CreateTeacher = ({show, onHide}) => {
                     {errorMessage}
                     {requestOkMessage}
                 </Modal.Body>
-                <Modal.Footer>                    <Button 
-                    variant={'outline-dark'} 
+                <Modal.Footer
+                    style={{background: '#ccc2f8' }}>                    
+                    <Button 
+                    variant={'outline-light'} 
                     onClick={(e) => handleRegister(e)}
                     disabled={isRequest}
+                    style={{color:'#6439ff', borderColor:'#6439ff'}}
                     >
                         Добавить
                     </Button>

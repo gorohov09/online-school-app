@@ -56,34 +56,24 @@ const HomeManager = ({setIsAuth}) => {
             <Navbar bg="dark" variant="ligth">
                 <Container>
                 <NavLink to={'/manager'} style={{color:'#ffffff', fontSize:'36px', fontWeight:'500', textDecoration:'none'}}>ПоШагам</NavLink>
-                    <Button 
-                        variant='outline-light'
-                        size="lg"
-                        style={{border:'none'}} 
-                        className = 'ms-3' 
-                        onClick={() => {
-                            sessionStorage.clear();
-                            setIsAuth(false);
-                            navigate("/login");
-                        }}
-                    >
-                        Выйти
-                    </Button>
+                <span style={{fontSize:'25px'}}>MANAGER</span>
+                <Button 
+                    variant='outline-light'
+                    size="lg"
+                    style={{border:'none'}} 
+                    className = 'ms-3' 
+                    onClick={() => {
+                        sessionStorage.clear();
+                        setIsAuth(false);
+                        navigate("/login");
+                    }}
+                >
+                    Выйти
+                </Button>
 
                 </Container>
             </Navbar>
             <Container className='d-flex flex-column align-items-center'>
-                <Container>
-                    <Button 
-                        variant={'outline-dark'} 
-                        className='mt-4 p-2 w-50'
-                        onClick={() => setIsTeacherVisible(true)}
-                        >
-                        Добавить преподавателя
-                    </Button>
-                
-                    <CreateTeacher show={isTeacherVisible} onHide={()=>setIsTeacherVisible(false)}/>
-                </Container>
                 <Container 
                 style={{border:'1px solid #6439ff', borderRadius:'15px', background:'#dcd3ff'}}
                 className='m-5'>
@@ -95,6 +85,18 @@ const HomeManager = ({setIsAuth}) => {
                         }
                         <hr/>
                     </Row>
+                </Container>
+                <Container className='d-flex flex-column align-items-center'>
+                    <Button 
+                        variant={'outline-light'} 
+                        style={{color:'#6439ff', fontSize:'20px',borderColor:'#6439ff', background:'#ccc2f8'}}
+                        className='mt-4 p-2 w-25'
+                        onClick={() => setIsTeacherVisible(true)}
+                        >
+                        Добавить преподавателя
+                    </Button>
+                
+                    <CreateTeacher show={isTeacherVisible} onHide={()=>setIsTeacherVisible(false)}/>
                 </Container>
                 
             </Container>
