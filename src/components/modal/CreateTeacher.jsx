@@ -21,7 +21,7 @@ const CreateTeacher = ({show, onHide}) => {
             lastName,
 			email,
 		  	password,
-            isStudent: true
+            isStudent: false
 		});
 
 		if (data?.status === 500){
