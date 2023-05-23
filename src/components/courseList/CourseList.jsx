@@ -67,7 +67,7 @@ export default function CourseList({isSortedByDate}) {
 				<StyledTableCell align="right">{course.countLessons}</StyledTableCell>
 				<StyledTableCell align="right">{course.countTasks}</StyledTableCell>
 				<StyledTableCell align="right">{course.create.substring(0, course.create.indexOf('T'))}</StyledTableCell>
-				<StyledTableCell align="right">{course.update.substring(0, course.update.indexOf('T'))}</StyledTableCell>
+				{/* <StyledTableCell align="right">{course.update.substring(0, course.update.indexOf('T'))}</StyledTableCell> */}
 			</StyledTableRow>
 		))
 	};
@@ -101,7 +101,7 @@ export default function CourseList({isSortedByDate}) {
             		<StyledTableCell align="right">Кол-во уроков</StyledTableCell>
             		<StyledTableCell align="right">Кол-во заданий</StyledTableCell>
             		<StyledTableCell align="right">Дата создания</StyledTableCell>
-            		<StyledTableCell align="right">Дата изменения</StyledTableCell>
+            		{/* <StyledTableCell align="right">Дата изменения</StyledTableCell> */}
           		</TableRow>
         		</TableHead>
         		<TableBody>

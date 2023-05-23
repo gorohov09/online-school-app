@@ -17,7 +17,6 @@ const ShowCourse = ({show, onHide, courseId}) => {
             <Container className='d-flex flex-column align-items-center' style={{color:'#6439ff'}}>
                 <h2>{data.name}</h2>
                 <h5>Дата создания: {data.create}</h5>
-                <h5>Дата обновления: {data.update}</h5>
                 <p></p>
                 <p style={{fontSize:'20px'}}>Описание: {data.description}</p>
                 <p></p>
