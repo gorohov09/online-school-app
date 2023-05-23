@@ -60,7 +60,7 @@ const ShowCourse = ({show, onHide, courseId}) => {
                 <Modal.Header closeButton
                     style={{background: '#ccc2f8' }}>
                     <Modal.Title id="contained-modal-title-vcenter" style={{color: '#6439ff'}}>
-                    Добавить преподавателя
+                    Информация о курсе
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body 
