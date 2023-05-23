@@ -29,6 +29,7 @@ const LoginForm = ({setToken, setIsAuth, setIsManager}) => {
 		}
 		else{
 			setToken(data.token);
+            console.log(data.token);
 			setIsAuth(true);
             console.log(data.typeUser);
 			if (data.typeUser === 'teacher')
