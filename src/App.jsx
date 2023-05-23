@@ -6,12 +6,13 @@ import AddModulePage from "./pages/course/addModule/AddModulePage";
 import CourseSinglePage from "./pages/course/courseSinglePage/CourseSinglePage";
 import LessonSinglePage from "./pages/course/lessonSinglePage/LessonSinglePage";
 import CourseForStudentPage from "./pages/courseForStudent/CourseForStudentPage";
-// import AddTaskPage from "./pages/course/addTask/AddTaskPage";
 import AddTaskPage from "./pages/course/addTask/AddTaskPage2";
 import HomeStudentPage from "./pages/homeStudent/HomeStudentPage";
 import SolveTasksPage from "./pages/solveTasks/SolveTasksPage";
 import StudentRatingByCoursePage from "./pages/studentRatingByCourse/StudentRatingByCoursePage";
 import AuthForm from "./components/authForm/AuthForm";
+import HomeManager from "./pages/homeManager/HomeManager";
+
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import useToken from "./hooks/useToken";
@@ -41,6 +42,7 @@ function App() {
 			<Route path="/addLesson/:moduleId" element={<AddLessonPage setIsAuth={setIsAuth} />}/>
 			<Route path="/lessons/:lessonId" element={<LessonSinglePage setIsAuth={setIsAuth} />}/>
 			<Route path="/addTask/:lessonId" element={<AddTaskPage setIsAuth={setIsAuth} />}/>
+			<Route path="/manager" element={<HomeManager setIsAuth={setIsAuth} />} />
 			
 			<Route path="/student/" element={<HomeStudentPage setIsAuth={setIsAuth} />}/>
 			<Route path="/courseForStudent/:courseId" element={<CourseForStudentPage setIsAuth={setIsAuth} />}/>

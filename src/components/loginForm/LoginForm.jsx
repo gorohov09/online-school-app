@@ -8,7 +8,7 @@ import theme from '../muiTheme.jsx';
 
 import './loginForm.scss'
 
-const LoginForm = ({setToken, setIsAuth}) => {
+const LoginForm = ({setToken, setIsAuth, setIsManager}) => {
     const {loginUser, error, clearError} = useCourseService();
     const navigate = useNavigate();
 
@@ -30,10 +30,13 @@ const LoginForm = ({setToken, setIsAuth}) => {
 		else{
 			setToken(data.token);
 			setIsAuth(true);
+            console.log(data.typeUser);
 			if (data.typeUser === 'teacher')
-				navigate("/");
-			else
-				navigate("/student")
+				navigate('/');
+			else if (data.typeUser === 'student')
+				navigate('/student');
+            else 
+                navigate('/manager');
 		}
 		
 	}

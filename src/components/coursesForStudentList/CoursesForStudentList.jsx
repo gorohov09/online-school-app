@@ -18,7 +18,6 @@ const CoursesForStudentList = () => {
         getPopularCourses()
             .then(data => setData(data))
             .then(setLoading(false));
-        console.log('Effect');
         
     }, []);
 
@@ -26,7 +25,6 @@ const CoursesForStudentList = () => {
         getPopularCourses()
             .then(data => setData(data))
             .then(setLoading(false));
-        console.log('EffectReqSuccess');
         setIsEnrollReq(false);
     }, [isEnrollReq]);
 
