@@ -14,20 +14,29 @@ const ShowCourse = ({show, onHide, courseId}) => {
 
     const renderCourseInfo = () => {
         return(
-            <Container className='d-flex flex-column align-items-center'>
-                <h3>{data.name}</h3>
-                <h4>Дата создания: {data.create}</h4>
-                <h4>Дата обновления: {data.update}</h4>
-                <p>Описание: {data.description}</p>
+            <Container className='d-flex flex-column align-items-center' style={{color:'#6439ff'}}>
+                <h2>{data.name}</h2>
+                <h5>Дата создания: {data.create}</h5>
+                <h5>Дата обновления: {data.update}</h5>
+                <p></p>
+                <p style={{fontSize:'20px'}}>Описание: {data.description}</p>
+                <p></p>
+                <h4>Модули</h4>
                 {data.modules.map((module, index) => {
                     return(
-                        <Container key={index} className='d-flex flex-column align-items-center'>
-                            <h4>{module.name}</h4>
+                        <Container key={index} className='d-flex flex-column '>
+                            <h4>Модуль: {module.name}</h4>
+                            <hr/>
+                            <h5> Уроки:</h5>
                             {module.lessons.map((lesson, index) => {
-                                <Container key={index} className='d-flex flex-column align-items-center'>
-                                    <h4>{lesson.name}</h4>
+                                return(
+                                    <Container key={index} className='d-flex flex-column '>
+                                    <h5>{lesson.name}</h5>
                                 </Container>
+                                )
+                                
                             })}
+                            <hr/>
                         </Container>
                     )
                 })}
@@ -35,8 +44,9 @@ const ShowCourse = ({show, onHide, courseId}) => {
         )
     }
 
+    let courseInfo = [];
     if(data !== null){
-
+        courseInfo = renderCourseInfo();
     }
 
     return (
@@ -56,44 +66,12 @@ const ShowCourse = ({show, onHide, courseId}) => {
                 <Modal.Body 
                     className='d-flex flex-column align-items-center'
                     style={{background: '#ccc2f8' }}>
-                    <Form.Control
-                        className='mt-3 w-75'
-                        placeholder='Имя'
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                    />
-                    <Form.Control
-                        className='mt-3 w-75'
-                        placeholder='Фамилия'
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                    />
-                    <Form.Control
-                        className='mt-3 w-75'
-                        placeholder='Почта'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <Form.Control
-                        className='mt-3 w-75'
-                        placeholder='Пароль'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    {errorMessage}
-                    {requestOkMessage}
+                   {courseInfo}
+                    
                 </Modal.Body>
-                <Modal.Footer
+                {/* <Modal.Footer
                     style={{background: '#ccc2f8' }}>                    
-                    <Button 
-                    variant={'outline-light'} 
-                    onClick={(e) => handleRegister(e)}
-                    disabled={isRequest}
-                    style={{color:'#6439ff', borderColor:'#6439ff'}}
-                    >
-                        Добавить
-                    </Button>
-                </Modal.Footer>
+                </Modal.Footer> */}
             </Modal>
         </Container>
     );

@@ -5,6 +5,7 @@ import { Button, Container, Row } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import Navbar from 'react-bootstrap/Navbar';
 import CreateTeacher from '../../components/modal/CreateTeacher';
+import ShowCourse from '../../components/modal/ShowCourse';
 import useCourseService from '../../services/CourseService.jsx';
 // import Navbar from '../../components/navbar/Navbar';
 // import CreatePart from '../components/modals/CreatePart';
@@ -14,8 +15,10 @@ const HomeManager = ({setIsAuth}) => {
     const {getPopularCourses, registerUser} = useCourseService();
     const navigate = useNavigate();
     const [courses, setCourses] = useState(null);
+
     const [isTeacherVisible, setIsTeacherVisible] = useState(false);
-    const [isTypeVisible, setIsTypeVisible] = useState(false);
+    const [courseId, setCourseId] = useState('');
+    const [isCourseInfoVisible, setIsCourseInfoVisible] = useState(false);
     const [isPartVisible, setIsPartVisible] = useState(false);
 
     useEffect(() => {
@@ -24,7 +27,9 @@ const HomeManager = ({setIsAuth}) => {
     }, []);
 
     const onHandleToCourse = (courseId) => {
-        navigate(`/courseForStudent/${courseId}`)
+        setIsCourseInfoVisible(true);
+        setCourseId(courseId);
+
     }
 
     const renderCourses = () => {
@@ -33,7 +38,7 @@ const HomeManager = ({setIsAuth}) => {
                 return(
                     <Row 
                         key={course.courseId} 
-                        style={{background: index % 2 === 0 ? '#ccc2f8' : 'transparent', padding: 10, fontWeight: 600, fontSize: '20px' }}
+                        style={{background: index % 2 === 0 ? '#ccc2f8' : 'transparent', padding: 10, fontWeight: 600, fontSize: '20px', cursor:'pointer' }}
                         onClick={() => onHandleToCourse(course.courseId)}
                         >
                         {course.name}| Количество студентов:  {course.countStudents}| Количество задач в курсе:  {course.countTasks} 
@@ -95,8 +100,13 @@ const HomeManager = ({setIsAuth}) => {
                         >
                         Добавить преподавателя
                     </Button>
-                
+                    {isCourseInfoVisible ?
+                        <ShowCourse show={isCourseInfoVisible} onHide={()=>setIsCourseInfoVisible(false) } courseId={courseId}/>
+                        :
+                        null
+                    }
                     <CreateTeacher show={isTeacherVisible} onHide={()=>setIsTeacherVisible(false)}/>
+                    
                 </Container>
                 
             </Container>
